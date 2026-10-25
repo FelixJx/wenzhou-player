@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <title>UI 演示 · 温州玩家</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* 演示控制条：固定在容器底部，可折叠 */
+    #demo-bar {
+      position: absolute; left: 0; right: 0; bottom: 0; z-index: 100;
+      background: rgba(0,0,0,0.85); border-top: 1px solid #263049;
+      padding: 6px 8px calc(env(safe-area-inset-bottom, 0) + 6px);
+      display: flex; flex-wrap: wrap; gap: 6px;
+      max-height: 42%; overflow-y: auto;
+    }
+    #demo-bar.min { max-height: 36px; overflow: hidden; }
+    #demo-bar button {
+      font: inherit; font-size: 12px; padding: 6px 10px; border-radius: 8px;
+      border: 1px solid #263049; background: #141a2a; color: #e8ecf4; cursor: pointer;
+    }
+    #demo-bar button.hot { border-color: #35e0e0; color: #35e0e0; }
+    #demo-bar button.tog { background: #35e0e0; color: #0b0f1a; border-color: #35e0e0; }
+    #demo-log { width: 100%; font: 11px/1.4 ui-monospace, Consolas, monospace; color: #8a9099; white-space: pre-wrap; max-height: 60px; overflow: auto; }
+    #game { background: linear-gradient(180deg, #1a2140 0%, #0b0f1a 60%, #1c1a12 100%); }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <canvas id="game"></canvas>
+    <div id="hud" hidden></div>
+    <div id="dock"></div>
+    <div id="overlay" hidden></div>
+    <div id="toast"></div>
+    <div id="demo-bar"></div>
+  </div>
+
+  <!-- 内容若已存在则加载（缺失时静默用下方 mock） -->
+  <script src="../content/params.js" onerror="void 0"></script>
+  <script src="../content/places.js" onerror="void 0"></script>
+  <script src="../content/knowledge.js" onerror="void 0"></script>
+  <script src="../content/badwords.js" onerror="void 0"></script>
+  <script src="ui.js"></script>
+  <script src="ending.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var WZ = window.WZ;
+    WZ.content = WZ.content || {};
+    var C = WZ.content;
+
+    // ---------- mock 内容（仅在真实 content 缺失时填充） ----------
+    C.params = C.params || { minPerSec: 4, stayMin: 32, restMin: 64, goBackMin: 64, hearts: 3, calmTimes: 2 };
+    C.places = C.places || [
+      { id: 'center',   name: '游客中心',   types: ['home'],          stayMin: 0,  knowledgeId: 'k_center' },
+      { id: 'wuma',     name: '五马街',     types: ['shop', 'sight'], stayMin: 32, knowledgeId: 'k_wuma', crowdWindow: [300, 600] },
+      { id: 'mochi',    name: '墨池公园',   types: ['sight', 'rest'], stayMin: 32, knowledgeId: 'k_mochi' },
+      { id: 'xianqian', name: '县前小吃街', types: ['food'],          stayMin: 32, knowledgeId: 'k_xianqian' },
+      { id: 'teastall', name: '巷子茶摊',   types: ['rest', 'lane'],  stayMin: 64, knowledgeId: 'k_tea' },
+      { id: 'pier',     name: '江滨码头',   types: ['sight'],         stayMin: 32, knowledgeId: 'k_pier' },
+      { id: 'lane1',    name: '登选坊',     types: ['lane'],          stayMin: 0,  knowledgeId: 'k_lane1' },
+      { id: 'lane2',    name: '仓桥街',     types: ['lane'],          stayMin: 0,  knowledgeId: 'k_lane2' },
+      { id: 'toilet1',  name: '公厕 · 五马', types: ['toilet'],       stayMin: 0 },
+      { id: 'toilet2',  name: '公厕 · 墨池', types: ['toilet'],       stayMin: 0 },
+      { id: 'toilet3',  name: '公厕 · 江滨', types: ['toilet'],       stayMin: 0 }
+    ];
+    C.knowledge = C.knowledge || [
+      { id: 'k_center',   text: '温州古称永嘉，鹿城是老城所在。', source: '《温州市志》' },
+      { id: 'k_wuma',     text: '五马街得名于晋代太守王羲之"五马出巡"的传说。', source: '《温州地名志》' },
+      { id: 'k_mochi',    text: '墨池相传为王羲之洗砚之处。', source: '《温州府志》' },
+      { id: 'k_xianqian', text: '糯米饭、鱼丸、灯盏糕是温州街头三样早点。', source: '《温州小吃》' },
+      { id: 'k_tea',      text: '温州人喝早茶，习惯一壶茶配一碟茶点坐一上午。', source: '地方习俗（示例）' },
+      { id: 'k_pier',     text: '江心屿在瓯江中，文天祥曾于 1276 年由此脱险南下。', source: '《宋史·文天祥传》' }
+    ];
+    C.badwords = C.badwords || { words: ['傻', '滚'], fallbackByTag: { walk: '一天走了两万步' } };
+
+    var guests = [
+      { id: 'g1', tag: 'walk',   name: '走不动', line: '一天走了两万步',   hearts: 3, status: 'follow', calmLeft: 2 },
+      { id: 'g2', tag: 'rush',   name: '催催催', line: '时间太赶了',       hearts: 3, status: 'follow', calmLeft: 2 },
+      { id: 'g3', tag: 'food',   name: '吃不惯', line: '吃不惯外地口味',   hearts: 3, status: 'follow', calmLeft: 2 },
+      { id: 'g4', tag: 'toilet', name: '憋不住', line: '找不到厕所',       hearts: 3, status: 'follow', calmLeft: 2 },
+      { id: 'g5', tag: 'any',    name: '都行哥', line: '随便，都行',       hearts: 3, status: 'follow', calmLeft: 2 }
+    ];
+
+    function mkResult(withLost) {
+      return {
+        broughtBack: withLost ? 4 : 5, total: 5, remembered: 3, arriveMin: withLost ? 1037 : 973, overtime: !!withLost,
+        lost: withLost ? ['g3'] : [],
+        guestLines: [
+          { id: 'g1', name: '走不动', text: '今天腿还在。谢谢你记得歇脚。', star: true },
+          { id: 'g2', name: '催催催', text: '还行，没耽误太久。', star: true },
+          { id: 'g3', name: '吃不惯', text: withLost ? '……' : '鱼丸是真的好吃。', star: !withLost },
+          { id: 'g4', name: '憋不住', text: '你是懂地图的。', star: true },
+          { id: 'g5', name: '都行哥', text: '都说了随便。但你安排得挺好。', star: false }
+        ],
+        knowledge: ['k_wuma', 'k_mochi', 'k_xianqian'],
+        title: withLost ? '贴心向导' : '本地通',
+        celebrities: ['xie_lingyun'], wentBack: false, difficulty: 'easy', seat: 'abcd1234'
+      };
+    }
+
+    var celebCard = {
+      name: '谢灵运', title: '永嘉太守 · 山水诗鼻祖',
+      text: '阿明过五马，\n墨池春草生。\n江心一帆远，\n不负此城行。',
+      source: 'ai', knowledgeId: 'k_mochi', ask: 'poem'
+    };
+    var celebCardOriginal = {
+      name: '谢灵运', title: '《登池上楼》', text: '池塘生春草，园柳变鸣禽。',
+      source: 'template', knowledgeId: 'k_mochi', ask: 'talk', isOriginal: true
+    };
+
+    var boards = {
+      remembered: [{ seat: 'abcd1234', name: '阿明', value: 5 }, { seat: 'efgh5678', name: '小温', value: 4 }, { seat: 'ijkl9012', name: '游客', value: 3 }],
+      fastest: [{ seat: 'efgh5678', name: '小温', value: 901 }, { seat: 'abcd1234', name: '阿明', value: 973 }],
+      lost: [{ seat: 'mnop3456', name: '赶路人', value: 3 }]
+    };
+
+    var epilogue = [
+      '你队伍里那五句话，\n不是我写的。',
+      '是刚才在同一面墙前，\n另外五个人写下的。',
+      '你写的那一句，\n现在也在别人的队伍里。',
+      '1024 分钟很短。\n但一座城愿意等你过完它。'
+    ];
+
+    // ---------- 演示控制 ----------
+    var bar = document.getElementById('demo-bar');
+    var logEl = document.createElement('div'); logEl.id = 'demo-log';
+    function log(s) { logEl.textContent = (new Date()).toTimeString().slice(0, 8) + '  ' + s + '\n' + logEl.textContent; }
+    function add(label, fn, cls) {
+      var b = document.createElement('button'); b.textContent = label; if (cls) b.className = cls;
+      b.addEventListener('click', fn); bar.appendChild(b); return b;
+    }
+    var tog = add('▾ 演示', function () { bar.classList.toggle('min'); tog.textContent = bar.classList.contains('min') ? '▴ 演示' : '▾ 演示'; }, 'tog');
+
+    var hudTimer = null;
+    function stopHud() { clearInterval(hudTimer); hudTimer = null; }
+    function runHud() {
+      stopHud();
+      WZ.ui.hide();
+      var state = { clockMin: 0, guests: JSON.parse(JSON.stringify(guests)) };
+      WZ.ui.hud.update(state);
+      hudTimer = setInterval(function () {
+        state.clockMin += 16;
+        if (state.clockMin > 1024) state.clockMin = 0;
+        var g = state.guests;
+        if (state.clockMin === 256) { g[0].hearts = 2; g[1].calmLeft = 1; }
+        if (state.clockMin === 512) { g[0].hearts = 1; g[0].status = 'sit'; g[2].hearts = 2; }
+        if (state.clockMin === 768) { g[2].status = 'runaway'; g[3].hearts = 1; }
+        if (state.clockMin === 960) { g[2].status = 'lost'; g[2].hearts = 0; }
+        if (state.clockMin === 0) { state.guests = JSON.parse(JSON.stringify(guests)); }
+        WZ.ui.hud.update(state);
+      }, 250);
+    }
+
+    add('S0 开局', function () { stopHud(); WZ.ui.showIntro(function (r) { log('intro → ' + JSON.stringify(r)); WZ.ui.toast('记下了：' + r.text); }); }, 'hot');
+    add('S1 接团', function () { stopHud(); WZ.ui.showTeam(guests, function () { log('team → ready'); WZ.ui.hide(); }); }, 'hot');
+    add('S2 排路线', function () {
+      stopHud();
+      WZ.ui.showRoutePlanner({
+        places: C.places, guests: guests,
+        preview: function (ids) {
+          return guests.map(function (g) {
+            var mood = 'neutral', text = '……';
+            if (g.tag === 'rush') { mood = ids.length >= 4 ? 'worry' : ids.length ? 'happy' : 'neutral'; text = ids.length >= 4 ? '停这么多站？' : '少停几站'; }
+            if (g.tag === 'walk') { mood = ids.indexOf('teastall') >= 0 || ids.indexOf('mochi') >= 0 ? 'happy' : ids.length >= 3 ? 'worry' : 'neutral'; text = mood === 'happy' ? '有地方坐' : '走得动吗'; }
+            if (g.tag === 'food') { mood = ids.indexOf('xianqian') >= 0 ? 'happy' : 'neutral'; text = mood === 'happy' ? '有吃的' : '想吃点东西'; }
+            if (g.tag === 'toilet') { mood = ids.some(function (i) { return /toilet/.test(i); }) ? 'happy' : ids.length >= 3 ? 'worry' : 'neutral'; text = mood === 'happy' ? '有厕所' : '厕所呢'; }
+            if (g.tag === 'any') { mood = 'happy'; text = '都行'; }
+            return { guestId: g.id, mood: mood, text: text };
+          });
+        }
+      }, function (ids) { log('route → ' + ids.join(',')); WZ.ui.hide(); });
+    }, 'hot');
+    add('HUD 走表', runHud, 'hot');
+    add('停站卡', function () { WZ.ui.showStay(C.places[1], null, function () { log('stay done'); }); });
+    add('中断条', function () { WZ.ui.showInterrupt({ id: 'i1', title: '走不动和催催催吵起来了', a: { label: '歇一下' }, b: { label: '接着走' } }, function (c) { log('interrupt → ' + c); }); });
+    add('名人卡(AI)', function () { stopHud(); WZ.ui.showCelebrity(celebCard, function (c) { log('celebrity → ' + c); WZ.ui.hide(); }); }, 'hot');
+    add('名人卡(原作)', function () { stopHud(); WZ.ui.showCelebrity(celebCardOriginal, function (c) { log('celebrity → ' + c); WZ.ui.hide(); }); });
+    add('结尾·有丢人', function () { stopHud(); WZ.ui.showEnding(mkResult(true), function (back) { log('ending → wentBack=' + back); WZ.ui.showResult(mkResult(true), handlers); }); }, 'hot');
+    add('结尾·无丢人', function () { stopHud(); WZ.ui.showEnding(mkResult(false), function (back) { log('ending(no lost) → wentBack=' + back + '（应立即进结算）'); WZ.ui.showResult(mkResult(false), handlers); }); }, 'hot');
+    var handlers = {
+      onAgain: function () { log('result → again'); WZ.ui.showDifficulty(true, function (d) { log('difficulty → ' + d); WZ.ui.hide(); }); },
+      onWhere: function () { log('result → where'); WZ.ui.toast('你写的那句去了 2 个人的队伍'); },
+      onBoards: function () { log('result → boards'); WZ.ui.showBoards(boards); }
+    };
+    add('结算·有丢人', function () { stopHud(); WZ.ui.showResult(mkResult(true), handlers); }, 'hot');
+    add('结算·无丢人', function () { stopHud(); WZ.ui.showResult(mkResult(false), handlers); });
+    add('结算·隐藏去哪了', function () { stopHud(); WZ.ui.showResult(mkResult(false), { onAgain: handlers.onAgain, onBoards: handlers.onBoards }); });
+    add('升华屏', function () { stopHud(); WZ.ui.showEpilogue(epilogue, function () { log('epilogue done'); WZ.ui.hide(); }); }, 'hot');
+    add('难度·首局', function () { stopHud(); WZ.ui.showDifficulty(false, function (d) { log('difficulty → ' + d); WZ.ui.hide(); }); });
+    add('难度·全开', function () { stopHud(); WZ.ui.showDifficulty(true, function (d) { log('difficulty → ' + d); WZ.ui.hide(); }); });
+    add('榜单', function () { stopHud(); WZ.ui.showBoards(boards, function () { WZ.ui.hide(); }); });
+    add('toast', function () { WZ.ui.toast('这是一条提示'); });
+    add('全流程', function () {
+      stopHud();
+      WZ.ui.showIntro(function (r) {
+        log('intro → ' + JSON.stringify(r));
+        WZ.ui.showTeam(guests, function () {
+          WZ.ui.showRoutePlanner({ places: C.places, guests: guests, preview: function () { return []; } }, function (ids) {
+            log('route → ' + ids.join(','));
+            WZ.ui.hide();
+            runHud();
+            setTimeout(function () { WZ.ui.showStay(C.places[1], null); }, 800);
+            setTimeout(function () { WZ.ui.showInterrupt({ title: '前面人潮很挤', a: { label: '绕小巷' }, b: { label: '硬穿' } }, function (c) { log('interrupt → ' + c); }); }, 4500);
+            setTimeout(function () { WZ.ui.showCelebrity(celebCard, function (c) { log('celebrity → ' + c); WZ.ui.hide(); }); }, 9000);
+            setTimeout(function () {
+              stopHud();
+              WZ.ui.showEnding(mkResult(true), function (back) {
+                log('ending → wentBack=' + back);
+                var res = mkResult(true); res.wentBack = back; if (back) { res.broughtBack = 5; res.lost = []; res.arriveMin += 64; res.overtime = true; }
+                WZ.ui.showResult(res, {
+                  onAgain: handlers.onAgain, onWhere: handlers.onWhere, onBoards: handlers.onBoards
+                });
+              });
+            }, 14000);
+          });
+        });
+      });
+    }, 'hot');
+    add('关闭', function () { stopHud(); WZ.ui.hide(); WZ.ui.hud.hide(); });
+    bar.appendChild(logEl);
+    log('就绪。按钮依次演示所有页面；content/*.js 缺失时使用 mock。');
+  })();
+  </script>
+</body>
+</html>

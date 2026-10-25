@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>圈地：温州 · Demo</title>
+<style>
+  html,body{margin:0;height:100%;background:#10131c;color:#e8ecf4;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;overflow:hidden;-webkit-user-select:none;user-select:none}
+  #hud{position:fixed;top:0;left:0;right:0;height:56px;display:flex;align-items:center;gap:14px;padding:0 14px;background:#171c2a;border-bottom:2px solid #2a3350;z-index:5}
+  #coins{font-size:24px;font-weight:800;color:#ffd166;font-variant-numeric:tabular-nums}
+  #coins::before{content:"🪙 ";font-size:18px}
+  #timer{margin-left:auto;font-variant-numeric:tabular-nums;color:#8a9099}
+  #timer b{color:#e8ecf4;font-size:18px}
+  #owned{font-size:13px;color:#8a9099}
+  #map{position:fixed;top:56px;left:0;right:0;bottom:0;display:block;touch-action:none;cursor:pointer}
+  #tip{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);font-size:12px;color:#8a9099;background:rgba(23,28,42,.9);padding:6px 14px;border-radius:999px;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="hud">
+  <span id="coins">500</span>
+  <span id="owned">已盘 0/16 家</span>
+  <span id="timer">⏳ <b>5:00</b></span>
+</div>
+<canvas id="map"></canvas>
+<div id="tip">点店铺盘下来 · 盘下的店每 10 秒冒金币 · 越好的店越贵</div>
+<script src="data.js"></script>
+<script src="staff.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

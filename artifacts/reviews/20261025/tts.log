@@ -1,0 +1,8 @@
+PASS 1 模块挂到 WZ.tts，五个接口齐全
+PASS 2 没有 speechSynthesis 的环境：supported=false，speak 静默返回 false
+PASS 3 speak：多行诗用「，」连读，谢灵运声线放慢
+PASS 4 未知名人也有默认声线；空文本返回 false
+PASS 5 stop：取消并结束说话状态；每次 speak 前先清场
+PASS 6 静音开关：setMuted(true) 立即停 + 持久化，muted 读取一致
+PASS 7 onEnd 回调挂到 onend/onerror
+tts.test.js 全部通过（7 项）

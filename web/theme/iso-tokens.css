@@ -1,0 +1,167 @@
+/* ==========================================================================
+   Cozy Isometric — Design Tokens
+   风格来源：等距 2.5D 治愈系模拟经营（iso-cartoon / cozy tycoon）
+   核心：平涂分色阶、无描边、暖米白环境色 + 高饱和功能色、硬偏移投影
+   ========================================================================== */
+
+:root {
+  /* ---------- 1. 环境色（占画面 80%）：低饱和、高明度、偏暖 ---------- */
+  --iso-paper:        #F7F2E3;  /* 卡片/面板主面 —— 米白偏暖 */
+  --iso-paper-2:      #EFE7D2;  /* 面板次面 / 分区底 */
+  --iso-paper-3:      #E3D9BE;  /* 面板凹陷 / 输入框底 */
+  --iso-cream:        #FBF8EF;  /* 高光面 / 文字底板 */
+
+  --iso-stone:        #C9C7BC;  /* 石材亮面（参考图石柱/路缘） */
+  --iso-stone-mid:    #ABA99D;  /* 石材主面 */
+  --iso-stone-dark:   #8B8980;  /* 石材背光面 */
+
+  --iso-grass:        #C6CB98;  /* 草皮亮面 */
+  --iso-grass-dark:   #A5AC74;  /* 草皮暗面 */
+  --iso-leaf:         #6FA35A;  /* 树冠亮面 */
+  --iso-leaf-dark:    #3F6B3E;  /* 树冠暗面 */
+  --iso-leaf-deep:    #2C4A32;  /* 林线剪影 */
+
+  /* ---------- 2. 功能色（占画面 20%）：高饱和、纯色块 ---------- */
+  --iso-orange:       #F2A03D;  /* 主 CTA —— 餐车/小鸭的橘 */
+  --iso-orange-lit:   #FFC46B;  /* 受光面 */
+  --iso-orange-dark:  #C9751F;  /* 投影面 / 按钮底边 */
+  --iso-orange-deep:  #9C5511;  /* 文字压色 */
+
+  --iso-coral:        #E4553F;  /* 危险 / 扣血 —— 锥桶红 */
+  --iso-coral-lit:    #FF8A70;
+  --iso-coral-dark:   #A93A28;
+
+  --iso-mint:         #57C79A;  /* 成功 / 恢复 —— 薄荷绿 */
+  --iso-mint-lit:     #86E0BC;
+  --iso-mint-dark:    #2E8C68;
+
+  --iso-rose:         #E4587E;  /* 强调 / 稀有 —— 招牌玫红 */
+  --iso-rose-lit:     #FF8BA9;
+  --iso-rose-dark:    #A93255;
+
+  --iso-sky:          #7FA8D0;  /* 信息 / 水系 —— 屋顶蓝 */
+  --iso-sky-lit:      #A7C8E8;
+  --iso-sky-dark:     #51719B;
+
+  --iso-wood:         #B98A55;  /* 木质容器 */
+  --iso-wood-lit:     #D6A874;
+  --iso-wood-dark:    #7E5527;
+
+  /* ---------- 3. 墨色（描边与文字）：深墨绿，绝不用纯黑 ---------- */
+  --iso-ink:          #2E3A33;
+  --iso-ink-soft:     #4A554C;
+  --iso-ink-mute:     #7A837A;
+  --iso-ink-faint:    #A8AFA5;
+
+  /* ---------- 4. 等距投影：硬边、同色系加深、无模糊 ---------- */
+  --iso-shadow-sm:    2px 2px 0 rgba(80, 72, 52, .18);
+  --iso-shadow:       4px 4px 0 rgba(80, 72, 52, .20);
+  --iso-shadow-lg:    6px 6px 0 rgba(80, 72, 52, .22);
+  --iso-shadow-xl:    10px 10px 0 rgba(80, 72, 52, .18);
+  /* 物体落地投影（等距菱形感） */
+  --iso-ground:       0 10px 0 -4px rgba(80, 72, 52, .16);
+
+  /* ---------- 5. 内高光 / 内暗边：制造「厚块」体积 ---------- */
+  --iso-bevel:        inset 0 3px 0 rgba(255, 255, 255, .55),
+                      inset 0 -4px 0 rgba(80, 72, 52, .12);
+  --iso-bevel-strong: inset 0 3px 0 rgba(255, 255, 255, .38),
+                      inset 0 -5px 0 rgba(0, 0, 0, .16);
+
+  /* ---------- 6. 圆角：小半径，几何体感 ---------- */
+  --r-xs: 4px;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 20px;
+  --r-pill: 999px;
+
+  /* ---------- 7. 间距 ---------- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+
+  /* ---------- 8. 字号与字重 ---------- */
+  --font-ui: "PingFang SC", "Yuanti SC", "Hiragino Sans GB",
+             "Source Han Sans SC", "Noto Sans SC", system-ui, sans-serif;
+  --font-num: "Baloo 2", "Nunito", "PingFang SC", system-ui, sans-serif;
+
+  --fs-xs: 11px;
+  --fs-sm: 13px;
+  --fs-md: 15px;
+  --fs-lg: 18px;
+  --fs-xl: 24px;
+  --fs-2xl: 32px;
+  --fs-3xl: 44px;
+
+  /* ---------- 9. 层级 ---------- */
+  --z-hud: 100;
+  --z-panel: 200;
+  --z-modal: 300;
+  --z-toast: 400;
+
+  /* ---------- 10. 动效：短、弹、有回弹 ---------- */
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+  --ease-back: cubic-bezier(.34, 1.56, .64, 1);
+  --dur-fast: .12s;
+  --dur-base: .22s;
+  --dur-slow: .38s;
+}
+
+/* ==========================================================================
+   等距底纹（可直接用作场景底板 / 面板背景）
+   ========================================================================== */
+.iso-grid-bg {
+  background-color: var(--iso-paper);
+  background-image:
+    /* 菱形网格线 */
+    repeating-linear-gradient(45deg,
+      rgba(139, 137, 128, .10) 0 1px, transparent 1px 40px),
+    repeating-linear-gradient(-45deg,
+      rgba(139, 137, 128, .10) 0 1px, transparent 1px 40px);
+}
+
+.iso-tile-bg {
+  background-color: #E5E3D2;
+  background-image:
+    repeating-linear-gradient(45deg,
+      transparent 0 39px, rgba(255, 255, 255, .55) 39px 40px),
+    repeating-linear-gradient(-45deg,
+      transparent 0 39px, rgba(255, 255, 255, .55) 39px 40px),
+    repeating-linear-gradient(45deg,
+      rgba(160, 155, 130, .12) 0 40px, transparent 40px 80px);
+}
+
+/* ==========================================================================
+   材质工具类
+   ========================================================================== */
+.m-paper {
+  background: var(--iso-paper);
+  border-radius: var(--r-lg);
+  box-shadow: var(--iso-shadow), var(--iso-bevel);
+}
+
+.m-stone {
+  background: var(--iso-stone-mid);
+  color: var(--iso-cream);
+  border-radius: var(--r-md);
+  box-shadow: var(--iso-shadow), var(--iso-bevel-strong);
+}
+
+.m-wood {
+  background: var(--iso-wood);
+  color: var(--iso-cream);
+  border-radius: var(--r-md);
+  box-shadow: var(--iso-shadow), var(--iso-bevel-strong);
+}
+
+/* 文字：游戏感描边（用于标题压在场景上） */
+.t-outline {
+  color: #fff;
+  -webkit-text-stroke: 3px var(--iso-ink);
+  paint-order: stroke fill;
+  text-shadow: 0 3px 0 rgba(46, 58, 51, .35);
+}

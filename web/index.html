@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0f1a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>温州玩家 · 1024分钟</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="theme/iso-tokens.css">
+  <link rel="stylesheet" href="theme-iso.css">
+</head>
+<body>
+  <div id="app">
+    <canvas id="game" aria-label="温州地图"></canvas>
+    <div id="hud" hidden></div>
+    <div id="dock"></div>
+    <div id="overlay" hidden></div>
+    <div id="toast"></div>
+  </div>
+
+  <!-- 内容（W5） -->
+  <script src="../content/params.js"></script>
+  <script src="../content/places.js"></script>
+  <script src="../content/guests.js"></script>
+  <script src="../content/knowledge.js"></script>
+  <script src="../content/celebrities.js"></script>
+  <script src="../content/ending.js"></script>
+  <script src="../content/seed_troubles.js"></script>
+  <script src="../content/badwords.js"></script>
+  <script src="../content/promos.js"></script>
+  <script src="../content/districts.js"></script>
+  <script src="../content/ratings.js"></script>
+  <script src="../content/quiz.js"></script>
+  <script src="../content/pois.js"></script>
+  <!-- 引擎（W1） -->
+  <script src="map.js"></script>
+  <script src="characters.js"></script>
+  <script src="render.js"></script>
+  <script src="input.js"></script>
+  <script src="engine.js"></script>
+  <!-- 规则（W2） -->
+  <script src="guests.js"></script>
+  <script src="scoring.js"></script>
+  <script src="celebrity.js"></script>
+  <script src="rules.js"></script>
+  <!-- 音效（PRD-v2 F9，零资产合成） -->
+  <script src="day.js"></script>
+  <script src="shopsheet.js"></script>
+  <script src="sfx.js"></script>
+  <!-- 首访 5 秒开场（同源 iframe，见 intro/ 与 intromount.js） -->
+  <script src="intromount.js"></script>
+  <script src="music.js"></script>
+  <!-- 名人「听他说」（浏览器 TTS，离线可用，不支持则静默） -->
+  <script src="tts.js"></script>
+  <!-- 流程 UI（W3） -->
+  <script src="ui.js"></script>
+  <script src="ending.js"></script>
+  <!-- 10/24 升级：插旗/引导语、手册、问答 -->
+  <script src="advisor.js"></script>
+  <script src="book.js"></script>
+  <script src="quiz.js"></script>
+  <!-- 联网与总控（Lead） -->
+  <script src="net.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

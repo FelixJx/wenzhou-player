@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 170" width="120" height="170">
+  <!-- 柴犬老板 · NPC｜同主角骨架，换皮毛与围裙配色 -->
+  <defs>
+    <linearGradient id="dogFur" x1="16%" y1="6%" x2="86%" y2="96%">
+      <stop offset="0%" stop-color="#EFB274"/>
+      <stop offset="46%" stop-color="#D9914F"/>
+      <stop offset="100%" stop-color="#B26F32"/>
+    </linearGradient>
+    <linearGradient id="dogFace" x1="30%" y1="20%" x2="76%" y2="86%">
+      <stop offset="0%" stop-color="#FFFDF7"/>
+      <stop offset="62%" stop-color="#F7EFDF"/>
+      <stop offset="100%" stop-color="#E4D6BE"/>
+    </linearGradient>
+    <linearGradient id="dogShirt" x1="8%" y1="0%" x2="92%" y2="100%">
+      <stop offset="0%" stop-color="#FDFAF2"/>
+      <stop offset="58%" stop-color="#F0E8D8"/>
+      <stop offset="100%" stop-color="#D6C9B4"/>
+    </linearGradient>
+    <linearGradient id="dogApron" x1="6%" y1="0%" x2="96%" y2="100%">
+      <stop offset="0%" stop-color="#F4A9A0"/>
+      <stop offset="50%" stop-color="#D9705F"/>
+      <stop offset="100%" stop-color="#A34A3D"/>
+    </linearGradient>
+    <linearGradient id="dogPants" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5A644F"/>
+      <stop offset="100%" stop-color="#3A4436"/>
+    </linearGradient>
+    <linearGradient id="dogShoe" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#525749"/>
+      <stop offset="100%" stop-color="#2A2E28"/>
+    </linearGradient>
+    <radialGradient id="dogBlush">
+      <stop offset="0%" stop-color="#EE8A72" stop-opacity=".4"/>
+      <stop offset="100%" stop-color="#EE8A72" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="dogApronClip">
+      <path d="M46 92h28v30a3.5 3.5 0 0 1-3.5 3.5h-21A3.5 3.5 0 0 1 46 122Z"/>
+    </clipPath>
+  </defs>
+
+  <ellipse cx="60" cy="159" rx="29" ry="7.5" fill="#504834" opacity=".10"/>
+  <ellipse cx="60" cy="157.4" rx="21" ry="5" fill="#504834" opacity=".20"/>
+
+  <!-- 腿 -->
+  <path d="M48 118h10.5v28H48Z" fill="url(#dogPants)"/>
+  <path d="M61.5 118h10.5v28H61.5Z" fill="#333D36"/>
+  <path d="M48 143h10.5v3.6H48Z" fill="#4C564C" opacity=".7"/>
+  <path d="M61.5 143h10.5v3.6H61.5Z" fill="#2E3731"/>
+  <!-- 鞋 -->
+  <path d="M45 148.6c0-2.6 3.4-4.4 8-4.4s8 1.8 8 4.4v2.6c0 2.4-3.6 3.6-8 3.6s-8-1.2-8-3.6Z"
+        fill="url(#dogShoe)" stroke="#2A2E29" stroke-width="1.9"/>
+  <path d="M46.6 149.8c0-1.8 2.8-3.1 6.4-3.1" fill="none" stroke="#767D6F" stroke-width="1.6" stroke-linecap="round" opacity=".8"/>
+  <path d="M59 148.6c0-2.6 3.4-4.4 8-4.4s8 1.8 8 4.4v2.6c0 2.4-3.6 3.6-8 3.6s-8-1.2-8-3.6Z"
+        fill="#23261F" stroke="#1D201B" stroke-width="1.9"/>
+
+  <!-- 身体 -->
+  <path d="M45 78c-.9 6-1.8 24-1.8 28 0 5 3 8 8 8h17.6c5 0 8-3 8-8 0-4-.9-22-1.8-28Z"
+        fill="url(#dogShirt)"/>
+  <path d="M60 78h7.9c.9 6 1.8 24 1.8 28 0 5-3 8-8 8H60Z" fill="#D5C8B2" opacity=".5"/>
+  <path d="M50 106q4 3 8 1M62.6 110.6q3-2 5.8-1" fill="none" stroke="#C4B69E" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+
+  <!-- 手臂 -->
+  <g transform="rotate(-8 44 82)">
+    <path d="M44 82.4c-5 .5-8.4 4.2-8.4 9v13.6c0 3.8 2.3 6.6 5.6 7 3.4.4 5.9-2.1 5.9-5.9V87.6c0-3.4-1.1-5.4-3.1-5.2Z"
+          fill="url(#dogShirt)" stroke="#B9AB93" stroke-width="1.3" stroke-linejoin="round"/>
+  </g>
+  <g transform="rotate(8 76 82)">
+    <path d="M76 82.4c5 .5 8.4 4.2 8.4 9v13.6c0 3.8-2.3 6.6-5.6 7-3.4.4-5.9-2.1-5.9-5.9V87.6c0-3.4 1.1-5.4 3.1-5.2Z"
+          fill="#D8CBB5" stroke="#AB9C84" stroke-width="1.3" stroke-linejoin="round"/>
+  </g>
+  <!-- 爪子 -->
+  <ellipse cx="43.4" cy="116.6" rx="5.6" ry="6.4" fill="url(#dogFur)"/>
+  <path d="M41.2 114.4q1.4 3.4 0 5.2M44.4 114.2q1.4 3.4 0 5.2" fill="none" stroke="#B26F32" stroke-width="1.1" stroke-linecap="round" opacity=".55"/>
+  <ellipse cx="76.6" cy="116.6" rx="5.6" ry="6.4" fill="#C48343"/>
+
+  <!-- 围裙 -->
+  <path d="M46 92h28v30a3.5 3.5 0 0 1-3.5 3.5h-21A3.5 3.5 0 0 1 46 122Z" fill="url(#dogApron)"/>
+  <g clip-path="url(#dogApronClip)">
+    <path d="M63.4 92h10.6v33.5H63.4Z" fill="#A34A3D" opacity=".4"/>
+    <path d="M46 93.6h28v3.4H46Z" fill="#FFC8BC" opacity=".85"/>
+    <path d="M49.4 97v25M70.6 97v25" stroke="#FFD6CC" stroke-width="1.3" stroke-dasharray="2.8 3.2" opacity=".75"/>
+    <path d="M53.4 105.4h13.2v9.4a1.5 1.5 0 0 1-1.5 1.5h-10.2a1.5 1.5 0 0 1-1.5-1.5Z"
+          fill="#F5B7AC" stroke="#A34A3D" stroke-width="1.3"/>
+    <path d="M55.8 100.6h8.4v4.8h-8.4Z" fill="#FDF7EC" stroke="#A34A3D" stroke-width="1"/>
+    <path d="M57.4 102.2h5.2M57.4 103.8h3.6" stroke="#C08C7E" stroke-width=".9" stroke-linecap="round"/>
+  </g>
+  <path d="M46 92h28v30a3.5 3.5 0 0 1-3.5 3.5h-21A3.5 3.5 0 0 1 46 122Z"
+        fill="none" stroke="#8E3C31" stroke-width="1.7" stroke-linejoin="round" opacity=".9"/>
+  <path d="M46.4 98.6q-4.6.6-6 4.4M73.6 98.6q4.6.6 6 4.4" fill="none" stroke="#A34A3D" stroke-width="1.9" stroke-linecap="round"/>
+
+  <!-- 脖子 + 毛领 -->
+  <path d="M54.6 60h10.8v16H54.6Z" fill="#C48343"/>
+  <ellipse cx="60" cy="77" rx="14" ry="5" fill="#A56933" opacity=".4"/>
+  <path d="M49.4 74.6c2.6 4 6.6 6.4 10.6 6.4s8-2.4 10.6-6.4c-2.6 7.4-6.2 10.6-10.6 10.6s-8-3.2-10.6-10.6Z"
+        fill="url(#dogFace)" stroke="#C48343" stroke-width="1.3" stroke-linejoin="round"/>
+
+  <!-- 头 -->
+  <ellipse cx="60" cy="44" rx="26.5" ry="27" fill="url(#dogFur)"/>
+  <path d="M60 17a26.5 26.5 0 0 1 0 54 20 20 0 0 0 0-54Z" fill="#B26F32" opacity=".3"/>
+
+  <!-- 耳朵 -->
+  <path d="M38.4 30.6c-3.6-10.4-1-17.4 5.4-16.4 5.6 1 9 8 9.8 14.6Z"
+        fill="url(#dogFur)" stroke="#A56933" stroke-width="1.8" stroke-linejoin="round"/>
+  <path d="M81.6 30.6c3.6-10.4 1-17.4-5.4-16.4-5.6 1-9 8-9.8 14.6Z"
+        fill="#C48343" stroke="#96602C" stroke-width="1.8" stroke-linejoin="round"/>
+  <path d="M42.2 27.4c-2-5.4-.6-9 2.4-8.6 2.6.4 4.4 4 5 7.6Z" fill="#F0B98A"/>
+  <path d="M77.8 27.4c2-5.4.6-9-2.4-8.6-2.6.4-4.4 4-5 7.6Z" fill="#D99257"/>
+
+  <!-- 脸部白毛 -->
+  <path d="M60 37.6c10.2 0 17.6 5.8 17.6 13.8 0 11.8-8.2 20.6-17.6 20.6s-17.6-8.8-17.6-20.6c0-8 7.4-13.8 17.6-13.8Z"
+        fill="url(#dogFace)"/>
+  <path d="M60 38.4c9.4 0 16.4 5.6 16.4 13.4 0 11.4-7.6 20-16.4 20V38.4Z" fill="#E4D6BE" opacity=".5"/>
+  <path d="M60 37.6c10.2 0 17.6 5.8 17.6 13.8 0 11.8-8.2 20.6-17.6 20.6s-17.6-8.8-17.6-20.6c0-8 7.4-13.8 17.6-13.8Z"
+        fill="none" stroke="#C48343" stroke-width="1.3" opacity=".65"/>
+
+  <!-- 眉点 -->
+  <ellipse cx="47.6" cy="41.4" rx="3.2" ry="2.2" fill="#FFFDF7" opacity=".95"/>
+  <ellipse cx="72.4" cy="41.4" rx="3.2" ry="2.2" fill="#FFFDF7" opacity=".8"/>
+
+  <!-- 眼睛 -->
+  <ellipse cx="48.4" cy="50.4" rx="4.2" ry="4.8" fill="#2F231A"/>
+  <ellipse cx="71.6" cy="50.4" rx="4.2" ry="4.8" fill="#291E16"/>
+  <circle cx="46.8" cy="48.6" r="1.6" fill="#FFFFFF"/>
+  <circle cx="70" cy="48.6" r="1.5" fill="#FFFFFF" opacity=".95"/>
+  <circle cx="50.4" cy="52.4" r=".9" fill="#FFFFFF" opacity=".6"/>
+  <circle cx="73.6" cy="52.4" r=".8" fill="#FFFFFF" opacity=".55"/>
+
+  <!-- 鼻子 -->
+  <path d="M60 56.6c2.6 0 4.6 1.6 4.6 3.6s-2 3.4-4.6 3.4-4.6-1.4-4.6-3.4 2-3.6 4.6-3.6Z" fill="#3A2E26"/>
+  <ellipse cx="58.6" cy="58" rx="1.4" ry=".9" fill="#8E8078" opacity=".8"/>
+  <!-- 嘴 -->
+  <path d="M60 63.6v2.6M60 66.2q-4.4 3.4-7.6.4M60 66.2q4.4 3.4 7.6.4"
+        fill="none" stroke="#4A3B2E" stroke-width="1.9" stroke-linecap="round"/>
+  <!-- 胡须 -->
+  <path d="M44 61.6 51 62.6M44.6 65.6 51 64.6M76 61.6 69 62.6M75.4 65.6 69 64.6"
+        stroke="#B8A48C" stroke-width="1" stroke-linecap="round" opacity=".8"/>
+
+  <!-- 腮红 -->
+  <ellipse cx="40.6" cy="58.6" rx="7" ry="5" fill="url(#dogBlush)"/>
+  <ellipse cx="79.4" cy="58.6" rx="7" ry="5" fill="url(#dogBlush)" opacity=".8"/>
+
+  <!-- 边缘光 -->
+  <path d="M36.4 88v13" fill="none" stroke="#FFF3E0" stroke-width="2.2" stroke-linecap="round" opacity=".65"/>
+  <path d="M38.6 22.4c3.4-3.4 7.6-5.4 12-6.4" fill="none" stroke="#E8C09A" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+</svg>

@@ -1,0 +1,11 @@
+PASS checkAll：未出场时按 content 顺序返回全部匹配（谢在先、王在后）
+PASS checkAll：谢灵运已出场 → 墨池轮到王羲之（评审 L17 修复）
+PASS rules 整链：码头遇谢灵运后，墨池出王羲之；celebrity 命令带 when 字段（F3）
+PASS 冲突 walk_rush 选「歇一下」= 真歇：推进 stayMin 并清零走路表
+PASS 都行哥结算固定取 resolved 第 1 条（PRD 指定句不再 1/3 概率）
+PASS 称号：content.ending.resultTitles 生效（含 fast→rush 键名兼容），缺省回退内置
+PASS sfx：Node 环境无 AudioContext 时 init/play/setMuted 均不抛错
+PASS ai.sanitizeCtx：prompt 输入白名单化（去符号、截断、保留业务字段）
+PASS 回归：小巷（stayMin=0）只 visited 不 stayed，结算知识不含它
+
+9 项，0 失败

@@ -1,0 +1,34 @@
+# /etc/systemd/system/wenzhou.service
+# 《温州玩家 · 1024分钟》Node 服务。以 www-data 运行（REVIEW M7）；
+# 目录权限要求见 deploy/README.md「运行用户」一节（deploy.sh 会自动 chown）。
+[Unit]
+Description=Wenzhou Player 1024 - Node backend
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/srv/wenzhou/server
+EnvironmentFile=/srv/wenzhou/.env
+Environment=NODE_ENV=production
+ExecStart=/usr/bin/env node /srv/wenzhou/server/index.js
+Restart=always
+RestartSec=2
+KillSignal=SIGTERM
+TimeoutStopSec=10
+# 日志进 journald：journalctl -u wenzhou -f
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=wenzhou
+
+# 基础加固：/usr /boot /etc 只读，/srv/wenzhou 只有 data/ 可写
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadOnlyPaths=/srv/wenzhou
+ReadWritePaths=/srv/wenzhou/data
+
+[Install]
+WantedBy=multi-user.target

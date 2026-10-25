@@ -1,0 +1,29 @@
+PASS UMD：Node 里 require 后挂在 globalThis.WZ
+PASS easy 5 人：必含 1 个 any，其余 4 个不同标签，且至少一对冲突；line ≤20 字
+PASS normal 6 人 / hard 7 人，标签不重复
+PASS 困扰不足时用 seedTroubles / 默认句补齐，不报错
+PASS 停站：onArrive 推进 stayMin（rest 用 restMin），发 stay+clock，记录 visited
+PASS 1024 自动结束：tick 到 1024 发 end:midnight，之后不再出命令
+PASS goHome 发 end:home；到家(center)也等价于 goHome
+PASS 走不动：连续走路冒汗→掉心→心 0 坐下；哄一下归队；到歇脚点满足
+PASS 走不动：坐下 64 分钟没人管 → lost + 掉队中断
+PASS 吃不惯：13:00 前只冒泡；之后每 64 分钟掉心；心 0 跑去最近小吃店；到店归队并满足
+PASS 怕挤挤：人潮区窗口内每 48 分钟掉心，心 0 走丢 → 掉队中断；选 a 回去领 +64 归队
+PASS 买买买：到手信店满足；没买到就回家 → 留在店门口 lost（结尾丢人）
+PASS 没劲儿：两站没看点掉心，心 0 跑去最近看点；到看点且两站不重样 → 满足
+PASS 催催催：第 4 站起每站掉心；心低时冒泡并发 hud、speedMul 提速；少停站到家 → 满足
+PASS 憋不住：3 站没厕所转圈掉心，第 4 站跑向最近厕所；经过厕所即满足
+PASS 都行哥：全程不掉心，结算满足带 ⭐，台词固定
+PASS 哄：每人 2 次，第 2 次台词「你刚才不也让我等了半天」，第 3 次无效「……」
+PASS 冲突 interrupt：走不动与催催催同时心≤1 → 一次中断；选 a 一方+1 另一方-1；同对不再触发
+PASS 同时只挂一个 interrupt，其余排队，choose 后依次弹出
+PASS hard 传染：有人 sit 后，相邻 hearts≤1 的人 30 分钟后也 sit；easy 不传染
+PASS 回头 +64 与 overtime：wentBack 把 lost 带回家，arriveMin+64，>1024 为超时
+PASS 称号 4 种 + 兜底
+PASS planRoute 返回每位游客 preview（happy/worry/neutral + 短话）
+PASS 名人：开局苏步青(start)；墨池停 64 分钟出王羲之，陪他 +32 分钟全队+1 心；每人每局一次
+PASS 名人：文天祥需傍晚后(stage≥2)到码头；谢灵运让没劲儿满足；结算 celebrities 与 knowledge 带名人
+PASS W5 真实内容：params 别名键生效、名人 who/effect/enabled、游客 {place} 台词、整局 60 seed 无异常
+PASS WZ.celebrity.request：无 provider 立刻模板；有 provider 走回调给 source:ai；provider 出错回退模板
+
+27 项，0 失败

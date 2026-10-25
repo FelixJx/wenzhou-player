@@ -1,0 +1,179 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 170" width="120" height="170">
+  <!-- 摊主 · 主角｜2.64 头身 · 三层明暗 · 边缘光 -->
+  <defs>
+    <radialGradient id="heroSkin" cx="35%" cy="28%" r="78%">
+      <stop offset="0%" stop-color="#FEE0C2"/>
+      <stop offset="52%" stop-color="#F7CCA4"/>
+      <stop offset="100%" stop-color="#E2A67A"/>
+    </radialGradient>
+    <linearGradient id="heroHair" x1="18%" y1="0%" x2="82%" y2="100%">
+      <stop offset="0%" stop-color="#70553F"/>
+      <stop offset="46%" stop-color="#4B382A"/>
+      <stop offset="100%" stop-color="#2F221A"/>
+    </linearGradient>
+    <linearGradient id="heroShirt" x1="8%" y1="0%" x2="92%" y2="100%">
+      <stop offset="0%" stop-color="#FFFDF7"/>
+      <stop offset="58%" stop-color="#F3ECDF"/>
+      <stop offset="100%" stop-color="#D9CDBB"/>
+    </linearGradient>
+    <linearGradient id="heroApron" x1="6%" y1="0%" x2="96%" y2="100%">
+      <stop offset="0%" stop-color="#ff4656"/>
+      <stop offset="50%" stop-color="#e63946"/>
+      <stop offset="100%" stop-color="#a82a33"/>
+    </linearGradient>
+    <linearGradient id="heroPants" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5A6459"/>
+      <stop offset="100%" stop-color="#39443C"/>
+    </linearGradient>
+    <radialGradient id="heroBlush">
+      <stop offset="0%" stop-color="#F58585" stop-opacity=".45"/>
+      <stop offset="100%" stop-color="#F58585" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="heroShoe" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#525749"/>
+      <stop offset="100%" stop-color="#2A2E28"/>
+    </linearGradient>
+    <clipPath id="heroApronClip">
+      <path d="M46 92h28v30a3.5 3.5 0 0 1-3.5 3.5h-21A3.5 3.5 0 0 1 46 122Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- 落地影 -->
+  <ellipse cx="60" cy="159" rx="29" ry="7.5" fill="#504834" opacity=".10"/>
+  <ellipse cx="60" cy="157.4" rx="21" ry="5" fill="#504834" opacity=".20"/>
+
+  <!-- ===== 腿 ===== -->
+  <path d="M48 118h10.5v28H48Z" fill="url(#heroPants)"/>
+  <path d="M61.5 118h10.5v28H61.5Z" fill="#333D36"/>
+  <path d="M58.6 118h2.9v28h-2.9Z" fill="#2A332D" opacity=".55"/>
+  <path d="M48 143h10.5v3.6H48Z" fill="#4C564C" opacity=".75"/>
+  <path d="M61.5 143h10.5v3.6H61.5Z" fill="#2E3731"/>
+
+  <!-- ===== 鞋 ===== -->
+  <path d="M45 148.6c0-2.6 3.4-4.4 8-4.4s8 1.8 8 4.4v2.6c0 2.4-3.6 3.6-8 3.6s-8-1.2-8-3.6Z"
+        fill="url(#heroShoe)" stroke="#2A2E29" stroke-width="1.9"/>
+  <path d="M46.6 149.8c0-1.8 2.8-3.1 6.4-3.1" fill="none" stroke="#767D6F" stroke-width="1.6" stroke-linecap="round" opacity=".85"/>
+  <path d="M59 148.6c0-2.6 3.4-4.4 8-4.4s8 1.8 8 4.4v2.6c0 2.4-3.6 3.6-8 3.6s-8-1.2-8-3.6Z"
+        fill="#23261F" stroke="#1D201B" stroke-width="1.9"/>
+
+  <!-- ===== 身体 ===== -->
+  <path d="M45 78c-.9 6-1.8 24-1.8 28 0 5 3 8 8 8h17.6c5 0 8-3 8-8 0-4-.9-22-1.8-28Z"
+        fill="url(#heroShirt)"/>
+  <path d="M60 78h7.9c.9 6 1.8 24 1.8 28 0 5-3 8-8 8H60Z" fill="#DACEB9" opacity=".5"/>
+  <path d="M50 106q4 3 8 1M62.6 110.6q3-2 5.8-1" fill="none" stroke="#C9BCA6" stroke-width="1.5" stroke-linecap="round" opacity=".65"/>
+  <!-- 领口 -->
+  <path d="M52 76.6q8 7.4 16 0" fill="none" stroke="#B5A88F" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M52 76.6q8 6.6 16 0" fill="#EBE1CE" opacity=".85"/>
+
+  <!-- ===== 手臂 ===== -->
+  <!-- 左臂 -->
+  <g transform="rotate(-8 44 82)">
+    <path d="M44 82.4c-5 .5-8.4 4.2-8.4 9v13.6c0 3.8 2.3 6.6 5.6 7 3.4.4 5.9-2.1 5.9-5.9V87.6c0-3.4-1.1-5.4-3.1-5.2Z"
+          fill="url(#heroShirt)" stroke="#BCAE97" stroke-width="1.3" stroke-linejoin="round"/>
+  </g>
+  <path d="M36.4 86.2c1.2-1.6 3-2.4 4.8-2.4" fill="none" stroke="#FFFDF7" stroke-width="2.2" stroke-linecap="round" opacity=".9"/>
+  <path d="M37.4 105.4c1.6 1.4 3.8 1.2 5.4-.4" fill="none" stroke="#C9BCA6" stroke-width="1.4" stroke-linecap="round" opacity=".7"/>
+  <!-- 右臂 -->
+  <g transform="rotate(8 76 82)">
+    <path d="M76 82.4c5 .5 8.4 4.2 8.4 9v13.6c0 3.8-2.3 6.6-5.6 7-3.4.4-5.9-2.1-5.9-5.9V87.6c0-3.4 1.1-5.4 3.1-5.2Z"
+          fill="#DDD2C0" stroke="#AFA089" stroke-width="1.3" stroke-linejoin="round"/>
+  </g>
+  <!-- 手 -->
+  <ellipse cx="43.4" cy="116.6" rx="5.6" ry="6.4" fill="url(#heroSkin)"/>
+  <path d="M41 113.6q1.6 3.8 0 5.8" fill="none" stroke="#D89A6E" stroke-width="1.2" stroke-linecap="round" opacity=".65"/>
+  <ellipse cx="76.6" cy="116.6" rx="5.6" ry="6.4" fill="#E7B286"/>
+  <ellipse cx="76.6" cy="116.6" rx="5.6" ry="6.4" fill="none" stroke="#C98757" stroke-width="1.1" opacity=".4"/>
+
+  <!-- 胸牌 -->
+  <circle cx="50" cy="87.4" r="4.6" fill="#7FA8D0" stroke="#4F6E93" stroke-width="1.3"/>
+  <path d="M47.6 87.4h4.8M50 85v4.8" stroke="#FBF8EF" stroke-width="1.1" stroke-linecap="round"/>
+
+  <!-- ===== 围裙 ===== -->
+  <path d="M46 92h28v30a3.5 3.5 0 0 1-3.5 3.5h-21A3.5 3.5 0 0 1 46 122Z" fill="url(#heroApron)"/>
+  <g clip-path="url(#heroApronClip)">
+    <path d="M63.4 92h10.6v33.5H63.4Z" fill="#a82a33" opacity=".42"/>
+    <path d="M46 93.6h28v3.4H46Z" fill="#FFDB9C" opacity=".9"/>
+    <path d="M49.4 97v25M70.6 97v25" stroke="#FFE6B8" stroke-width="1.3" stroke-dasharray="2.8 3.2" opacity=".8"/>
+    <path d="M46 101.4h28" stroke="#a82a33" stroke-width="1.5" opacity=".35"/>
+    <path d="M53.4 105.4h13.2v9.4a1.5 1.5 0 0 1-1.5 1.5h-10.2a1.5 1.5 0 0 1-1.5-1.5Z"
+          fill="#ff4a5b" stroke="#a82a33" stroke-width="1.3"/>
+    <path d="M54 108.6h12" stroke="#a82a33" stroke-width="1.1" opacity=".5" stroke-dasharray="2.4 2.8"/>
+    <!-- 口袋上方的小票 -->
+    <path d="M56.6 102.4h6.8v3h-6.8Z" fill="#FDF7EC" stroke="#a82a33" stroke-width="1"/>
+  </g>
+  <path d="M46 92h28v30a3.5 3.5 0 0 1-3.5 3.5h-21A3.5 3.5 0 0 1 46 122Z"
+        fill="none" stroke="#8a222a" stroke-width="1.7" stroke-linejoin="round" opacity=".9"/>
+  <!-- 腰带 -->
+  <path d="M46.4 98.6q-4.6.6-6 4.4M73.6 98.6q4.6.6 6 4.4" fill="none" stroke="#a82a33" stroke-width="1.9" stroke-linecap="round"/>
+
+  <!-- ===== 脖子 + 下巴投影 ===== -->
+  <path d="M54.6 62h10.8v16H54.6Z" fill="#E3A97D"/>
+  <ellipse cx="60" cy="77.6" rx="14" ry="5" fill="#C98A5E" opacity=".42"/>
+
+  <!-- ===== 头 ===== -->
+  <ellipse cx="60" cy="44" rx="26.5" ry="27" fill="url(#heroSkin)"/>
+  <path d="M60 17a26.5 26.5 0 0 1 0 54 20 20 0 0 0 0-54Z" fill="#DFA377" opacity=".34"/>
+
+  <!-- 耳朵 -->
+  <ellipse cx="34" cy="47" rx="3.9" ry="5.2" fill="#F3C29A"/>
+  <ellipse cx="34" cy="47" rx="2" ry="3.1" fill="#DEA173" opacity=".75"/>
+  <ellipse cx="86" cy="47" rx="3.9" ry="5.2" fill="#E4AD81"/>
+
+  <!-- ===== 头发 ===== -->
+  <path d="M60 17c14.7 0 24.8 9.4 25.4 22 .1 2.3-.2 4.3-.8 5.8-1.8-7.2-6.3-11.6-12.2-12.8-3.7 2.5-8.5 3.8-13.7 3.8-6 0-11.1-1.6-14.9-4.8-5.1 1.7-8.7 6.4-10.1 13.8-.5-1.5-.9-3.4-.7-5.6C35 26.2 45.3 17 60 17Z"
+        fill="url(#heroHair)"/>
+  <path d="M41 25.6c-3.4 2.8-5.6 6.6-6.6 11.4M52.4 21.8c-2.8 2.2-4.6 5.6-5.2 9M69.6 22.6c3 2 5.2 5.2 6.2 8.8"
+        fill="none" stroke="#2A1E15" stroke-width="1.4" stroke-linecap="round" opacity=".5"/>
+  <path d="M45 26.8c4.2-4.2 9.4-6.4 15-6.4 2.4 0 4.8.4 7 1.2-5.4 1-10 3.4-13.2 7.2-3.2.4-6.2-.4-8.8-2Z"
+        fill="#8C6C53" opacity=".7"/>
+  <path d="M47.6 26c3.2-2.6 7-4.2 10.8-4.4" fill="none" stroke="#B3906F" stroke-width="1.7" stroke-linecap="round" opacity=".85"/>
+  <!-- 呆毛 -->
+  <path d="M62.6 18c1.4-6.2 5.8-9.4 10-7.8" fill="none" stroke="#4B382A" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M63.4 16.6c1.2-4.2 4.2-6.4 7.4-6" fill="none" stroke="#8C6C53" stroke-width="1.1" stroke-linecap="round" opacity=".8"/>
+  <path d="M37.6 31c-1.8 7.4-.6 13.8 1.8 19-4.2-1.6-7-5.8-7.6-11.4-.3-3.4.6-6.2 2.2-8.6Z" fill="#3F2E22"/>
+  <path d="M82.4 31c1.8 7.4.6 13.8-1.8 19 4.2-1.6 7-5.8 7.6-11.4.3-3.4-.6-6.2-2.2-8.6Z" fill="#33251B"/>
+
+  <!-- ===== 五官 ===== -->
+  <!-- 眉毛（在发际线下方） -->
+  <path d="M43.6 38.4q4.4-2.4 8.8-.4M76.4 38.4q-4.4-2.4-8.8-.4"
+        fill="none" stroke="#3C2C20" stroke-width="2.1" stroke-linecap="round"/>
+
+  <!-- 左眼 -->
+  <ellipse cx="48.8" cy="49" rx="6.1" ry="7.1" fill="#FFFCF5"/>
+  <ellipse cx="48.8" cy="49" rx="6.1" ry="7.1" fill="none" stroke="#C58F63" stroke-width=".9" opacity=".45"/>
+  <ellipse cx="49.2" cy="49.4" rx="4.2" ry="5.2" fill="#3A2B20"/>
+  <ellipse cx="49.2" cy="50.3" rx="2.7" ry="3.4" fill="#1F1610"/>
+  <circle cx="47.2" cy="46.8" r="1.9" fill="#FFFFFF"/>
+  <circle cx="51.2" cy="52.2" r="1" fill="#FFFFFF" opacity=".85"/>
+  <path d="M42.6 44.8q3.1-3.9 7.4-3.9 3.2 0 5.6 2" fill="none" stroke="#2A1D15" stroke-width="2.3" stroke-linecap="round"/>
+  <path d="M43.4 53.6q5 3.4 10 .4" fill="none" stroke="#C58F63" stroke-width="1" stroke-linecap="round" opacity=".5"/>
+  <path d="M42.9 44 40.9 42.4" fill="none" stroke="#2A1D15" stroke-width="1.7" stroke-linecap="round"/>
+
+  <!-- 右眼 -->
+  <ellipse cx="71.2" cy="49" rx="6.1" ry="7.1" fill="#FBF5EC"/>
+  <ellipse cx="71.2" cy="49" rx="6.1" ry="7.1" fill="none" stroke="#B57E55" stroke-width=".9" opacity=".4"/>
+  <ellipse cx="70.8" cy="49.4" rx="4.2" ry="5.2" fill="#31241A"/>
+  <ellipse cx="70.8" cy="50.3" rx="2.7" ry="3.4" fill="#1A120D"/>
+  <circle cx="68.8" cy="46.8" r="1.8" fill="#FFFFFF" opacity=".95"/>
+  <circle cx="72.8" cy="52.2" r=".9" fill="#FFFFFF" opacity=".75"/>
+  <path d="M77.4 44.8q-3.1-3.9-7.4-3.9-3.2 0-5.6 2" fill="none" stroke="#2A1D15" stroke-width="2.3" stroke-linecap="round"/>
+  <path d="M76.6 53.6q-5 3.4-10 .4" fill="none" stroke="#B57E55" stroke-width="1" stroke-linecap="round" opacity=".45"/>
+  <path d="M77.1 44 79.1 42.4" fill="none" stroke="#2A1D15" stroke-width="1.7" stroke-linecap="round"/>
+
+  <!-- 鼻 -->
+  <path d="M60.4 55.8q-1.6 2 .4 2.6" fill="none" stroke="#C98757" stroke-width="1.6" stroke-linecap="round" opacity=".62"/>
+  <ellipse cx="60.4" cy="58.6" rx="2.4" ry="1.3" fill="#D2915F" opacity=".24"/>
+
+  <!-- 腮红 -->
+  <ellipse cx="39" cy="57.6" rx="7.6" ry="5.6" fill="url(#heroBlush)"/>
+  <ellipse cx="81" cy="57.6" rx="7.6" ry="5.6" fill="url(#heroBlush)" opacity=".85"/>
+
+  <!-- 嘴 -->
+  <path d="M55 62.4q5 4.2 10 0" fill="none" stroke="#B25E4A" stroke-width="2.1" stroke-linecap="round"/>
+  <path d="M56.6 62.9q3.4 2.2 6.8 0" fill="#E8837A" opacity=".5"/>
+  <path d="M57.8 64.9q2.2 1.1 4.4 0" fill="none" stroke="#FFDCD1" stroke-width="1.3" stroke-linecap="round" opacity=".8"/>
+
+  <!-- ===== 边缘光 ===== -->
+  <path d="M36.4 88v13" fill="none" stroke="#FFF7E9" stroke-width="2.2" stroke-linecap="round" opacity=".7"/>
+  <path d="M38 23.4c3.4-3.6 7.6-5.8 12-6.8" fill="none" stroke="#C9A282" stroke-width="1.5" stroke-linecap="round" opacity=".65"/>
+</svg>

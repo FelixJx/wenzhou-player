@@ -1,0 +1,8 @@
+PASS 1 travel 口径（步行 13 分 / 坐车 137 分）
+PASS 2 computePlan 分解（total=330，end=750）
+PASS 3 出发口径放宽（948 / 1024；空行程仍拦截）
+PASS 4 老城三圈地点互不重复（共 18 处）
+PASS 5 远郊圈用 placeIds 精选（示意位置口径）
+PASS 6 addTime 推进与午夜收工
+
+6 项全通过

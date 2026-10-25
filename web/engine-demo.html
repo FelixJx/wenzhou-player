@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>温州玩家 · 引擎演示（W1）</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #10161d; color: #eee; font: 13px/1.5 "PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif; }
+  #wrap { display: flex; height: 100%; align-items: stretch; justify-content: center; gap: 12px; padding: 8px; box-sizing: border-box; }
+  #stage { position: relative; aspect-ratio: 9 / 16; height: 100%; max-width: 100%; background: #000; border-radius: 10px; overflow: hidden; box-shadow: 0 0 0 1px #333; }
+  #game { width: 100%; height: 100%; display: block; }
+  #panel { width: 300px; overflow: auto; background: #1a222b; border-radius: 10px; padding: 10px 12px; box-sizing: border-box; }
+  #panel h3 { margin: 8px 0 4px; font-size: 13px; color: #ffd166; }
+  #panel button, #panel select { margin: 2px 2px 2px 0; padding: 4px 8px; background: #2d3a48; color: #eee; border: 1px solid #44546a; border-radius: 6px; cursor: pointer; font-size: 12px; }
+  #panel button:active { background: #3a86ff; }
+  #panel input[type=range] { width: 100%; }
+  #log { height: 160px; overflow: auto; background: #0d1218; border-radius: 6px; padding: 6px; font-size: 11px; white-space: pre-wrap; }
+  #hint { position: absolute; left: 8px; bottom: 8px; background: rgba(0,0,0,.55); padding: 4px 8px; border-radius: 6px; font-size: 11px; pointer-events: none; }
+  @media (max-width: 720px) {
+    #wrap { flex-direction: column; padding: 0; gap: 0; }
+    #stage { height: auto; width: 100%; aspect-ratio: auto; flex: 1 1 0; border-radius: 0; }
+    #panel { width: 100%; height: 38vh; border-radius: 0; }
+  }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <div id="stage">
+    <canvas id="game"></canvas>
+    <div id="hint">点地面走 · 桌面 WASD · 点游客弹气泡 · 点地点图标直达</div>
+  </div>
+  <div id="panel">
+    <h3>时钟 <span id="clockLabel">07:00（0）</span></h3>
+    <input id="clock" type="range" min="0" max="1024" value="0">
+    <div>
+      <button data-clock="0">白天</button><button data-clock="300">下午</button><button data-clock="560">黄昏</button><button data-clock="800">入夜</button><button data-clock="1000">黑透</button>
+    </div>
+    <h3>天气</h3>
+    <div><button data-weather="none">晴</button><button data-weather="rain">雨</button><button data-weather="heat">酷热</button><button data-weather="typhoon">台风</button></div>
+    <h3>封路</h3>
+    <div><select id="roadwork"><option value="">无</option></select> <button id="flash">黑屏 0.6s</button></div>
+    <h3>游客 g2（吃不惯）</h3>
+    <div>
+      <button id="sit">坐下</button><button id="unsit">起来</button><button id="run">跑去小吃街</button><button id="return">归队</button><button id="lost">走失</button><button id="heart">掉 1 心</button>
+    </div>
+    <h3>直达地点 / NPC</h3>
+    <div id="places"></div>
+    <div><button id="npc">召唤谢灵运@墨池</button><button id="npcRemove">移除 NPC</button><button id="pause">暂停/继续</button></div>
+    <h3>事件日志</h3>
+    <div id="log"></div>
+  </div>
+</div>
+
+<!-- content（可缺失） -->
+<script src="../content/params.js"></script>
+<script src="../content/places.js"></script>
+<!-- W1 四个文件 -->
+<script src="map.js"></script>
+<script src="render.js"></script>
+<script src="input.js"></script>
+<script src="engine.js"></script>
+<script>
+(function () {
+  var WZ = window.WZ;
+  // content 缺失时的内置兜底（与 map.js 的 fallbackContent 同源）
+  var content = (WZ.content && WZ.content.places && WZ.content.places.length)
+    ? { places: WZ.content.places, zones: WZ.content.zones || [], mapSize: WZ.content.mapSize || { w: 1600, h: 2400 }, params: WZ.content.params || {} }
+    : WZ.map.fallbackContent();
+
+  var logEl = document.getElementById('log');
+  function log(s) { logEl.textContent = '[' + new Date().toLocaleTimeString() + '] ' + s + '\n' + logEl.textContent.slice(0, 4000); }
+
+  var canvas = document.getElementById('game');
+  var eng = WZ.engine.init(canvas, content);
+  eng.setPlayer({ name: '小导' });
+
+  // 模拟 rules 产生的游客对象（契约 §2.3）
+  var guests = [
+    { id: 'g1', tag: 'walk', name: '走不动', line: '一天走了两万步', hearts: 3, status: 'follow' },
+    { id: 'g2', tag: 'food', name: '吃不惯', line: '早饭没吃', hearts: 3, status: 'follow' },
+    { id: 'g3', tag: 'crowd', name: '怕挤挤', line: '人多头晕', hearts: 2, status: 'follow' },
+    { id: 'g4', tag: 'rush', name: '催催催', line: '快点快点', hearts: 3, status: 'follow' },
+    { id: 'g5', tag: 'any', name: '都行哥', line: '随便', hearts: 3, status: 'follow' }
+  ];
+  eng.setGuests(guests);
+
+  eng.on('arrive', function (id) { log('arrive ' + id); var p = eng.getPlace(id); eng.bubble('player', '到 ' + (p ? p.name : id) + ' 了', 1800); });
+  eng.on('enterZone', function (id) { log('enterZone ' + id); eng.bubble('g3', '人好多，头晕……', 2000); });
+  eng.on('leaveZone', function (id) { log('leaveZone ' + id); });
+  eng.on('tapGuest', function (id) { log('tapGuest ' + id); var g = guests.filter(function (x) { return x.id === id; })[0]; eng.bubble(id, g ? g.line : '嗯？', 2000); });
+  eng.on('tapNPC', function (id) { log('tapNPC ' + id); eng.bubble(id, '池塘生春草，园柳变鸣禽。', 3000); });
+  eng.on('tapGround', function (p) { log('tapGround ' + Math.round(p.x) + ',' + Math.round(p.y)); });
+  eng.on('tapPlace', function (id) { log('tapPlace ' + id); });
+  var tickN = 0; eng.on('tick', function () { tickN++; });
+
+  // 面板
+  var clockEl = document.getElementById('clock'), clockLabel = document.getElementById('clockLabel');
+  function fmt(m) { var t = 7 * 60 + m; return ('0' + Math.floor(t / 60) % 24).slice(-2) + ':' + ('0' + t % 60).slice(-2); }
+  function setClock(v) { v = +v; clockEl.value = v; clockLabel.textContent = fmt(v) + '（' + v + '，第 ' + eng.setClock(v).getStage() + ' 档）'; }
+  clockEl.addEventListener('input', function () { setClock(clockEl.value); });
+  document.querySelectorAll('[data-clock]').forEach(function (b) { b.addEventListener('click', function () { setClock(b.getAttribute('data-clock')); }); });
+  document.querySelectorAll('[data-weather]').forEach(function (b) { b.addEventListener('click', function () { eng.setWeather(b.getAttribute('data-weather')); log('weather ' + b.getAttribute('data-weather')); }); });
+  var rwSel = document.getElementById('roadwork'), placesEl = document.getElementById('places');
+  content.places.forEach(function (p) {
+    var o = document.createElement('option'); o.value = p.id; o.textContent = p.name; rwSel.appendChild(o);
+    var b = document.createElement('button'); b.textContent = p.name; b.addEventListener('click', function () { eng.goTo(p.id); log('goTo ' + p.id + '（距 ' + Math.round(eng.distTo(p.id)) + 'px）'); }); placesEl.appendChild(b);
+  });
+  rwSel.addEventListener('change', function () { eng.setRoadwork(rwSel.value || null); log('roadwork ' + (rwSel.value || '无') + '，封了 ' + eng.getState().map.getRoadwork().cells.length + ' 格'); });
+  document.getElementById('flash').addEventListener('click', function () { eng.flash(600); });
+  function g2() { return guests[1]; }
+  document.getElementById('sit').addEventListener('click', function () { g2().status = 'sit'; eng.setGuests(guests); eng.bubble('g2', '不走了，就这儿坐。', 2000); });
+  document.getElementById('unsit').addEventListener('click', function () { g2().status = 'follow'; eng.setGuests(guests); });
+  document.getElementById('run').addEventListener('click', function () { g2().status = 'runaway'; eng.setGuests(guests); eng.guestRunTo('g2', 'xianqian'); eng.bubble('g2', '我先进去吃了啊！', 2000); });
+  document.getElementById('return').addEventListener('click', function () { g2().status = 'follow'; eng.setGuests(guests); eng.guestReturn('g2'); });
+  document.getElementById('lost').addEventListener('click', function () { g2().status = 'lost'; eng.setGuests(guests); eng.markLost('g2'); });
+  document.getElementById('heart').addEventListener('click', function () { g2().hearts = Math.max(0, g2().hearts - 1); eng.setGuests(guests); });
+  document.getElementById('npc').addEventListener('click', function () { eng.spawnNPC({ id: 'xie', placeId: 'mochi', label: '谢灵运' }); eng.goTo('mochi'); });
+  document.getElementById('npcRemove').addEventListener('click', function () { eng.removeNPC('xie'); });
+  document.getElementById('pause').addEventListener('click', function () { eng.pause(!eng.isPaused()); log(eng.isPaused() ? '已暂停' : '继续'); });
+
+  setClock(0);
+  eng.start();
+  log('引擎已启动：' + content.places.length + ' 个地点，地图 ' + eng.getState().map.cols + '×' + eng.getState().map.rows + ' 格');
+  setInterval(function () { if (tickN) { /* 帧率粗估 */ } }, 1000);
+})();
+</script>
+</body>
+</html>

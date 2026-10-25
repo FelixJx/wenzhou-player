@@ -1,0 +1,263 @@
+{
+  "createdAt": "2026-10-25T07:05:00.766Z",
+  "method": "规则回放 + 同进程 Express handler + 内存 SQLite；无浏览器/真机/线上 API 请求",
+  "limitations": [
+    "步行按 A* 路径与配置速度估算，未进入区域，不模拟鼠标/手势/画面",
+    "冲突统一选 a，名人统一走过；不评估真人乐趣、渲染速度或实时 Qwen 输出",
+    "所有榜单数据只写内存库，不接触线上榜单"
+  ],
+  "routes": {
+    "balanced": [
+      "f_changren",
+      "mochi",
+      "p_wuweihe",
+      "wuma",
+      "pier"
+    ],
+    "food": [
+      "xianqian",
+      "shuixin",
+      "f_changren",
+      "f_airen",
+      "f_paidui"
+    ],
+    "sightseeing": [
+      "wuma",
+      "mochi",
+      "pier",
+      "lane2",
+      "stage"
+    ]
+  },
+  "runCount": 270,
+  "summary": [
+    {
+      "difficulty": "easy",
+      "route": "balanced",
+      "runs": 30,
+      "scoreMean": 21.93,
+      "scoreMin": -1,
+      "scoreMax": 49,
+      "broughtBackMean": 4.47,
+      "rememberedMean": 3.47,
+      "clockMean": 290.38,
+      "uniqueScoreLines": 16,
+      "closedMean": 0
+    },
+    {
+      "difficulty": "easy",
+      "route": "food",
+      "runs": 30,
+      "scoreMean": 15.8,
+      "scoreMin": 2,
+      "scoreMax": 44,
+      "broughtBackMean": 3.73,
+      "rememberedMean": 2.73,
+      "clockMean": 359.94,
+      "uniqueScoreLines": 16,
+      "closedMean": 0
+    },
+    {
+      "difficulty": "easy",
+      "route": "sightseeing",
+      "runs": 30,
+      "scoreMean": 29.2,
+      "scoreMin": 2,
+      "scoreMax": 60,
+      "broughtBackMean": 4.47,
+      "rememberedMean": 3.17,
+      "clockMean": 301.15,
+      "uniqueScoreLines": 15,
+      "closedMean": 0
+    },
+    {
+      "difficulty": "normal",
+      "route": "balanced",
+      "runs": 30,
+      "scoreMean": 27.33,
+      "scoreMin": 3,
+      "scoreMax": 53,
+      "broughtBackMean": 5.33,
+      "rememberedMean": 4.33,
+      "clockMean": 290.38,
+      "uniqueScoreLines": 16,
+      "closedMean": 0
+    },
+    {
+      "difficulty": "normal",
+      "route": "food",
+      "runs": 30,
+      "scoreMean": 14,
+      "scoreMin": -6,
+      "scoreMax": 36,
+      "broughtBackMean": 4.07,
+      "rememberedMean": 3.07,
+      "clockMean": 359.94,
+      "uniqueScoreLines": 16,
+      "closedMean": 0
+    },
+    {
+      "difficulty": "normal",
+      "route": "sightseeing",
+      "runs": 30,
+      "scoreMean": 38.73,
+      "scoreMin": 6,
+      "scoreMax": 64,
+      "broughtBackMean": 5.33,
+      "rememberedMean": 3.87,
+      "clockMean": 301.15,
+      "uniqueScoreLines": 15,
+      "closedMean": 0
+    },
+    {
+      "difficulty": "hard",
+      "route": "balanced",
+      "runs": 30,
+      "scoreMean": 29.6,
+      "scoreMin": 14,
+      "scoreMax": 45,
+      "broughtBackMean": 6.13,
+      "rememberedMean": 5.13,
+      "clockMean": 290.38,
+      "uniqueScoreLines": 16,
+      "closedMean": 0
+    },
+    {
+      "difficulty": "hard",
+      "route": "food",
+      "runs": 30,
+      "scoreMean": 17.13,
+      "scoreMin": -10,
+      "scoreMax": 28,
+      "broughtBackMean": 4.53,
+      "rememberedMean": 3.53,
+      "clockMean": 359.94,
+      "uniqueScoreLines": 16,
+      "closedMean": 0
+    },
+    {
+      "difficulty": "hard",
+      "route": "sightseeing",
+      "runs": 30,
+      "scoreMean": 41.47,
+      "scoreMin": 11,
+      "scoreMax": 56,
+      "broughtBackMean": 6.13,
+      "rememberedMean": 4.37,
+      "clockMean": 301.15,
+      "uniqueScoreLines": 15,
+      "closedMean": 0
+    }
+  ],
+  "special": {
+    "sameShopRevisit": {
+      "first": 8,
+      "second": 8,
+      "extra": 0
+    },
+    "oneMinuteHome": {
+      "score": 0,
+      "broughtBack": 5,
+      "total": 5,
+      "remembered": 2,
+      "arriveMin": 1
+    },
+    "onlineBonus": {
+      "sameActionsOffline": 8,
+      "sameActionsWithOneModelSuccess": 12,
+      "delta": 4
+    },
+    "ratingProvenance": {
+      "fixtureSource": "携程",
+      "fixtureRating": 4.8,
+      "emitted": "就是这个味，值了（大众点评 4.8）没白来"
+    },
+    "midnight": {
+      "clock": 1024,
+      "overtime": false,
+      "broughtBack": 4,
+      "total": 5,
+      "score": 0,
+      "scoreLog": []
+    },
+    "leaderboard": {
+      "fabricatedRunResponses": [
+        {
+          "status": 200,
+          "body": {
+            "ok": true,
+            "id": 1
+          }
+        },
+        {
+          "status": 200,
+          "body": {
+            "ok": true,
+            "id": 2
+          }
+        },
+        {
+          "status": 200,
+          "body": {
+            "ok": true,
+            "id": 3
+          }
+        }
+      ],
+      "range501Response": {
+        "status": 400,
+        "body": {
+          "ok": false,
+          "error": "bad_score"
+        }
+      },
+      "scoreEntriesForSameSeat": 3,
+      "score": [
+        {
+          "seat": "REVI",
+          "name": "本地隔离评审样本",
+          "value": 500,
+          "at": 1792911900766
+        },
+        {
+          "seat": "REVI",
+          "name": "本地隔离评审样本",
+          "value": 499,
+          "at": 1792911900766
+        },
+        {
+          "seat": "REVI",
+          "name": "本地隔离评审样本",
+          "value": 498,
+          "at": 1792911900766
+        }
+      ],
+      "fastest": [
+        {
+          "seat": "REVI",
+          "name": "本地隔离评审样本",
+          "value": 1,
+          "at": 1792911900766
+        },
+        {
+          "seat": "REVI",
+          "name": "本地隔离评审样本",
+          "value": 1,
+          "at": 1792911900766
+        },
+        {
+          "seat": "REVI",
+          "name": "本地隔离评审样本",
+          "value": 1,
+          "at": 1792911900766
+        },
+        {
+          "seat": "REVI",
+          "name": "真实规则回放 1 分钟收队",
+          "value": 1,
+          "at": 1792911900766
+        }
+      ]
+    }
+  }
+}

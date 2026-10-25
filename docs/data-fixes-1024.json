@@ -1,0 +1,518 @@
+{
+ "generated_at": "2026-10-24",
+ "rule": "宁空勿编：没有可复查来源的数字一律删除或标注；本文件只是建议，未改 places.js",
+ "fixes": [
+  {
+   "priority": "P0",
+   "id": "yandang",
+   "field": "(新增) 状态提示 / 是否保留在路线里",
+   "current": "无，hours=06:30-21:30 即视为开放",
+   "suggested": "上屏标注『景区开放状态待核』或赛前暂时下线；电话核实后再恢复",
+   "evidence": [
+    "amap-poi-105-review.json: matched_name『雁荡山风景名胜区(暂停开放)』",
+    "携程景点页 you.ctrip.com/sight/yandangshan217/135800.html 开放时间栏『暂停营业；恢复营业时间待定』(2026-10-24 网页读取)",
+    "新浪旅游 2026-07-11：台风『巴威』全域闭园，恢复时间另行公布",
+    "反证：同一携程页有 2026 年下半年的点评，可能只是状态没更新"
+   ],
+   "confidence": "中",
+   "why": "两个平台同时显示暂停，飞书却写『正常营业』"
+  },
+  {
+   "priority": "P0",
+   "id": "yandang",
+   "field": "real.info.rating / reviews / ratingSrc",
+   "current": {
+    "rating": 4,
+    "reviews": 4552,
+    "ratingSrc": "大众点评"
+   },
+   "suggested": "删除；如要显示，改用携程 4.6 / 7994 条并标『携程，2026-10-24』",
+   "evidence": [
+    "mt105-results.json: 雁荡山 命中『雁荡山暖阳居民宿』(民宿)，评分 null / 48",
+    "飞书 didian 雁荡山 4/4552 的来源链接只有 you.ctrip.com，没有点评链接",
+    "携程页 4.6/5、7994 条点评(2026-10-24 网页读取)"
+   ],
+   "confidence": "高",
+   "why": "游戏里这条『大众点评 4.0(4552评)』找不到可复查的点评出处"
+  },
+  {
+   "priority": "P1",
+   "id": "yandang",
+   "field": "hours",
+   "current": "06:30-21:30",
+   "suggested": "06:30-17:30（灵岩/方洞/大龙湫/三折瀑；灵峰另有日夜场），并标『待核』",
+   "evidence": [
+    "携程景点页分景区开放时间(2026-10-24 网页读取)"
+   ],
+   "confidence": "中",
+   "why": ""
+  },
+  {
+   "priority": "P0",
+   "id": "tanghe",
+   "field": "real.info.meituan",
+   "current": 5,
+   "suggested": "删除",
+   "evidence": [
+    "飞书 didian 塘河夜画：美团评分 5、美团评价数 2"
+   ],
+   "confidence": "高",
+   "why": "只有 2 条评价的满分，上屏会误导；游戏里显示成『美团 5』"
+  },
+  {
+   "priority": "P0",
+   "id": "f_changren",
+   "field": "hours",
+   "current": "06:00-22:00",
+   "suggested": "07:00-18:30",
+   "evidence": [
+    "collector-latest gp-xc-1 携程(地址核对通过) 07:00-18:30",
+    "trip.com 长人馄饨铺(解放街店) 页面 07:00-18:30(2026-10-24 网页读取)",
+    "飞书 didian/shop 均 07:00-18:30",
+    "旧值疑似来自 2020 年一条携程用户点评里的『06:30-22:00』"
+   ],
+   "confidence": "高",
+   "why": "游戏会让 AI 游客晚上去吃已经关门的店"
+  },
+  {
+   "priority": "P0",
+   "id": "jiangxin",
+   "field": "hours",
+   "current": "08:30-22:00",
+   "suggested": "08:00-22:00，另加『19:30 停止入园』（若引擎支持 lastEntry）",
+   "evidence": [
+    "携程景点页 you.ctrip.com/sight/wenzhou153/16188.html：08:00-22:00（19:30停止售票/入园）(2026-10-24 网页读取)",
+    "大河票务 2025-10-11：08:00-21:00，19:30 停止入园",
+    "飞书 didian：08:00-22:00（19:30停止入园）"
+   ],
+   "confidence": "高(开门 08:00、19:30 停入)；闭园 21:00 还是 22:00 两源不一致",
+   "why": ""
+  },
+  {
+   "priority": "P1",
+   "id": "jiangxin",
+   "field": "real.info.rating / reviews",
+   "current": {
+    "rating": 4.5,
+    "reviews": 13316
+   },
+   "suggested": {
+    "rating": 4.9,
+    "reviews": 13352
+   },
+   "evidence": [
+    "大众点评网页(文件里误标为『美团』) mt105-results.json: 江心屿 → 命中『江心屿景区』",
+    "现值来自飞书人工表：飞书评分全是 0.5 的倍数，24 对同店里都比网页分低 0–0.9，像是『星级』不是『分数』"
+   ],
+   "confidence": "高",
+   "why": "ratingSrc 仍写『大众点评』，但建议界面上写『大众点评 4.0分（4843评）· 10/24』"
+  },
+  {
+   "priority": "P1",
+   "id": "tanghe",
+   "field": "real.info.rating / reviews",
+   "current": {
+    "rating": 4,
+    "reviews": 572
+   },
+   "suggested": {
+    "rating": 4.8,
+    "reviews": 573
+   },
+   "evidence": [
+    "大众点评网页(文件里误标为『美团』) mt105-results.json: 塘河夜画 → 精确命中",
+    "现值来自飞书人工表：飞书评分全是 0.5 的倍数，24 对同店里都比网页分低 0–0.9，像是『星级』不是『分数』"
+   ],
+   "confidence": "高",
+   "why": "ratingSrc 仍写『大众点评』，但建议界面上写『大众点评 4.0分（4843评）· 10/24』"
+  },
+  {
+   "priority": "P1",
+   "id": "f_changren",
+   "field": "real.info.rating / reviews",
+   "current": {
+    "rating": 3.5,
+    "reviews": 4836
+   },
+   "suggested": {
+    "rating": 4.0,
+    "reviews": 4843
+   },
+   "evidence": [
+    "大众点评网页(文件里误标为『美团』) mt105-results.json: 长人馄饨铺 → 命中『长人馄饨铺(解放街店)』",
+    "现值来自飞书人工表：飞书评分全是 0.5 的倍数，24 对同店里都比网页分低 0–0.9，像是『星级』不是『分数』"
+   ],
+   "confidence": "高",
+   "why": "ratingSrc 仍写『大众点评』，但建议界面上写『大众点评 4.0分（4843评）· 10/24』"
+  },
+  {
+   "priority": "P1",
+   "id": "f_airen",
+   "field": "real.info.rating / reviews",
+   "current": {
+    "rating": 3.5,
+    "reviews": 556
+   },
+   "suggested": {
+    "rating": 4.3,
+    "reviews": 557
+   },
+   "evidence": [
+    "大众点评网页(文件里误标为『美团』) mt105-results.json: 矮人松糕 → 命中『矮人松糕(小南店)』",
+    "现值来自飞书人工表：飞书评分全是 0.5 的倍数，24 对同店里都比网页分低 0–0.9，像是『星级』不是『分数』"
+   ],
+   "confidence": "高",
+   "why": "ratingSrc 仍写『大众点评』，但建议界面上写『大众点评 4.0分（4843评）· 10/24』"
+  },
+  {
+   "priority": "P1",
+   "id": "f_wzdjj",
+   "field": "real.info.rating / reviews",
+   "current": {
+    "rating": 3.5,
+    "reviews": 1835
+   },
+   "suggested": {
+    "rating": 4.2,
+    "reviews": 1837
+   },
+   "evidence": [
+    "大众点评网页(文件里误标为『美团』) mt105-results.json: 温州大酒家瓯菜馆 → 命中『温州大酒家瓯菜馆(黑金冠五马街步行街店)』，与飞书同店",
+    "现值来自飞书人工表：飞书评分全是 0.5 的倍数，24 对同店里都比网页分低 0–0.9，像是『星级』不是『分数』"
+   ],
+   "confidence": "高",
+   "why": "ratingSrc 仍写『大众点评』，但建议界面上写『大众点评 4.0分（4843评）· 10/24』"
+  },
+  {
+   "priority": "P1",
+   "id": "f_ouyan",
+   "field": "real.info.rating / reviews",
+   "current": {
+    "rating": 4,
+    "reviews": 611
+   },
+   "suggested": {
+    "rating": 4.9,
+    "reviews": 611
+   },
+   "evidence": [
+    "大众点评网页(文件里误标为『美团』) mt105-results.json: 瓯宴府 → 命中『瓯宴府(公园路店)』",
+    "现值来自飞书人工表：飞书评分全是 0.5 的倍数，24 对同店里都比网页分低 0–0.9，像是『星级』不是『分数』"
+   ],
+   "confidence": "高",
+   "why": "ratingSrc 仍写『大众点评』，但建议界面上写『大众点评 4.0分（4843评）· 10/24』"
+  },
+  {
+   "priority": "P1",
+   "id": "f_zhengliang",
+   "field": "real.info.rating / reviews",
+   "current": {
+    "rating": 3.5,
+    "reviews": 2054
+   },
+   "suggested": {
+    "rating": 4.4,
+    "reviews": 2063
+   },
+   "evidence": [
+    "大众点评网页(文件里误标为『美团』) mt105-results.json: 命中『正亮海鲜(人民路店)』，分店名和游戏『温富大厦店』不同，但都在人民西路、评价数与飞书 2054 一致"
+   ],
+   "confidence": "中",
+   "why": "上屏前请人点开 dianping 链接确认是温富大厦那家"
+  },
+  {
+   "priority": "P0",
+   "id": "wuma",
+   "field": "real.info.rating / reviews",
+   "current": {
+    "rating": 4,
+    "reviews": 3890
+   },
+   "suggested": "删除（或用 mt105-picks 方式手选五马街区正确词条后重采）",
+   "evidence": [
+    "大众点评网页(文件里误标为『美团』) mt105-results.json: 『五马历史文化街区』命中的是餐厅『甬小馆焗海鲜温州菜(五马街店)』 4.6/10835",
+    "飞书 4/3890 的来源链接是温州文旅局、本地宝，不是点评页"
+   ],
+   "confidence": "高",
+   "why": "现在这个数字没有可复查的点评出处"
+  },
+  {
+   "priority": "P0",
+   "id": "xianqian",
+   "field": "real.info.ctrip",
+   "current": 4.7,
+   "suggested": "删除",
+   "evidence": [
+    "ctrip-batch.json gp-bc-1：storeStatus=candidates_only，没有采到任何评分",
+    "其余文件中也没有县前汤圆的携程评分"
+   ],
+   "confidence": "高",
+   "why": "找不到来源的数字"
+  },
+  {
+   "priority": "P1",
+   "id": "xianqian",
+   "field": "real.info.rating / reviews",
+   "current": {
+    "rating": 3.5,
+    "reviews": 714
+   },
+   "suggested": "暂时删除，先确认是哪家店",
+   "evidence": [
+    "携程搜索出两家：『县前汤圆店(县前头店)』(28.01531,120.66055，与游戏坐标一致) 和『县前头汤圆店』(28.01467,120.66504，约 440 米外)",
+    "点评网页『县前头汤圆店』3.9/455；飞书 didian『县前头汤圆店』3.5/714；飞书 shop『县前头汤圆店』4.8/29(无链接)——三个数互相对不上"
+   ],
+   "confidence": "中",
+   "why": "很可能把隔壁另一家的数字挂到了游戏这家"
+  },
+  {
+   "priority": "P2",
+   "id": "xianqian",
+   "field": "hours",
+   "current": "06:00-20:00",
+   "suggested": "保留并标『待核』（飞书写 06:00-20:30，但那条记录对应的可能是另一家）",
+   "evidence": [
+    "飞书 didian 县前头汤圆店 hk.trip.com"
+   ],
+   "confidence": "低",
+   "why": ""
+  },
+  {
+   "priority": "P0",
+   "id": "f_wzdjj",
+   "field": "real.info.ctrip",
+   "current": 4,
+   "suggested": "删除",
+   "evidence": [
+    "ctrip-batch.json gp-zc-2：candidates_only，没有评分"
+   ],
+   "confidence": "高",
+   "why": "找不到来源的数字"
+  },
+  {
+   "priority": "P0",
+   "id": "f_shamaohe",
+   "field": "real.info.ctrip",
+   "current": 3,
+   "suggested": "删除",
+   "evidence": [
+    "ctrip-batch.json gp-xc-2：candidates_only，没有评分"
+   ],
+   "confidence": "高",
+   "why": "找不到来源的数字"
+  },
+  {
+   "priority": "P2",
+   "id": "f_shamaohe",
+   "field": "real.info.rating / reviews / ratingSrc (新增)",
+   "current": null,
+   "suggested": {
+    "rating": 3.5,
+    "reviews": 76,
+    "ratingSrc": "大众点评"
+   },
+   "evidence": [
+    "大众点评网页(文件里误标为『美团』) mt105-results.json: 命中『纱帽河老面馆·四十四年温州老店(金茂商厦店)』，与飞书同店"
+   ],
+   "confidence": "高",
+   "why": "可选：替换掉被删的携程 3"
+  },
+  {
+   "priority": "P1",
+   "id": "f_shamaohe",
+   "field": "hours",
+   "current": "00:00-24:00",
+   "suggested": "保留但标『待核』，或改成平台页能看到的时段",
+   "evidence": [
+    "只有飞书『全日开放』(hk.trip.com)，没有任何平台页给出具体时段"
+   ],
+   "confidence": "低",
+   "why": "老面馆 24 小时营业未经核实"
+  },
+  {
+   "priority": "P1",
+   "id": "f_airen",
+   "field": "hours",
+   "current": "07:00-17:30",
+   "suggested": "06:30-17:30",
+   "evidence": [
+    "collector-latest gp-bc-2 携程(地址核对通过) 06:30-17:30",
+    "飞书 didian/shop 06:30-17:30"
+   ],
+   "confidence": "高",
+   "why": ""
+  },
+  {
+   "priority": "P2",
+   "id": "f_airen",
+   "field": "real.info.cost",
+   "current": 28,
+   "suggested": 23,
+   "evidence": [
+    "携程 gp-bc-2 人均 23",
+    "高德人均 18"
+   ],
+   "confidence": "中",
+   "why": ""
+  },
+  {
+   "priority": "P1",
+   "id": "f_ouyan",
+   "field": "real.info.cost",
+   "current": 175,
+   "suggested": "286（携程），或写区间 290–310",
+   "evidence": [
+    "collector-latest gp-zc-3 携程 人均 286",
+    "高德App 人均 313",
+    "飞书 175 的来源是 you.ctrip.com，但同一平台现在显示 286"
+   ],
+   "confidence": "中",
+   "why": "预算玩法会受影响"
+  },
+  {
+   "priority": "P2",
+   "id": "f_zhengliang",
+   "field": "real.info.cost",
+   "current": 153,
+   "suggested": 149,
+   "evidence": [
+    "collector-latest gp-zc-4 携程 人均 149",
+    "高德 percapita 130"
+   ],
+   "confidence": "中",
+   "why": ""
+  },
+  {
+   "priority": "P2",
+   "id": "f_fuqi",
+   "field": "real.info.cost",
+   "current": 18,
+   "suggested": 20,
+   "evidence": [
+    "collector-latest gp-zc-1 携程 人均 20（地址核对通过）"
+   ],
+   "confidence": "中",
+   "why": ""
+  },
+  {
+   "priority": "P2",
+   "id": "f_fuqi",
+   "field": "hours",
+   "current": "00:00-24:00",
+   "suggested": "保留但标『平台写全天营业，口径模糊』",
+   "evidence": [
+    "携程只给『全天营业』，按 DATA-REQUIREMENTS 模糊口径只能进 opening_hours_reported"
+   ],
+   "confidence": "低",
+   "why": ""
+  },
+  {
+   "priority": "P1",
+   "id": "jiangxin",
+   "field": "real.info.src",
+   "current": [
+    "高德",
+    "大众点评",
+    "美团"
+   ],
+   "suggested": [
+    "高德",
+    "大众点评",
+    "携程"
+   ],
+   "evidence": [
+    "所有文件里没有江心屿的美团数据；飞书『美团评价数 41896』的来源链接是本地宝，不是美团"
+   ],
+   "confidence": "高",
+   "why": "src 里写了实际没用到的平台"
+  },
+  {
+   "priority": "P1",
+   "id": "tanghe",
+   "field": "real.info.cost",
+   "current": 168,
+   "suggested": "保留但标『参考价』或核实后改",
+   "evidence": [
+    "飞书 168（去哪儿/美团链接）",
+    "大河票务(2024-05)：成人 128 / 儿童 58"
+   ],
+   "confidence": "低",
+   "why": "票价两源不一致且年份不同"
+  },
+  {
+   "priority": "P2",
+   "id": "shuomen",
+   "field": "real.info.rating / reviews (新增)",
+   "current": null,
+   "suggested": {
+    "rating": 4.6,
+    "reviews": 147,
+    "ratingSrc": "大众点评"
+   },
+   "evidence": [
+    "大众点评网页(文件里误标为『美团』) mt105-results.json: 命中『朔门古港遗址』"
+   ],
+   "confidence": "高",
+   "why": "可选；另注意 2026-08 曾因台风临时闭园(潮新闻)"
+  },
+  {
+   "priority": "P2",
+   "id": "lane2",
+   "field": "real.info.rating / reviews (新增)",
+   "current": null,
+   "suggested": {
+    "rating": 4.5,
+    "reviews": 87,
+    "ratingSrc": "大众点评"
+   },
+   "evidence": [
+    "大众点评网页(文件里误标为『美团』) mt105-results.json: 精确命中『夏鼐故居』"
+   ],
+   "confidence": "高",
+   "why": "可选"
+  },
+  {
+   "priority": "P2",
+   "id": "f_paidui",
+   "field": "real.info.rating / reviews (新增)",
+   "current": null,
+   "suggested": {
+    "rating": 4.2,
+    "reviews": 182,
+    "ratingSrc": "大众点评"
+   },
+   "evidence": [
+    "大众点评网页(文件里误标为『美团』) mt105-results.json: 命中『温州传统名点排队烧饼(仓桥街店)』"
+   ],
+   "confidence": "高",
+   "why": "可选"
+  },
+  {
+   "priority": "P2",
+   "id": "s_miaoguo",
+   "field": "hours",
+   "current": "06:00-17:00",
+   "suggested": "核实；飞书妙果寺写 06:00-18:30",
+   "evidence": [
+    "飞书 didian 妙果寺(本地宝链接)"
+   ],
+   "confidence": "低",
+   "why": ""
+  },
+  {
+   "priority": "P2",
+   "id": "wuma",
+   "field": "real.lng / real.lat",
+   "current": [
+    120.6625,
+    28.0131
+   ],
+   "suggested": "确认用哪个点；步行路线用的是 [120.661439, 28.012801]",
+   "evidence": [
+    "tools/realmap/walks.json points.wuma"
+   ],
+   "confidence": "低",
+   "why": "地点坐标是手填的 4 位小数，和测路线的点相差约 110 米"
+  }
+ ]
+}

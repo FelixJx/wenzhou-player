@@ -1,0 +1,8 @@
+{
+  "name": "wenzhou-player",
+  "private": true,
+  "type": "commonjs",
+  "devDependencies": {
+    "playwright": "^1.64.1"
+  }
+}

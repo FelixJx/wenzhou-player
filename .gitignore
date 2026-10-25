@@ -1,0 +1,42 @@
+node_modules/
+server/data/
+.env
+artifacts/*.png
+*.db
+.gstack/
+
+# 密钥与工具本地配置（绝不入库）
+.feishu_creds.json
+.zcode/
+
+# 采集过程截图（数据 json 保留）
+tools/crawl-lab/results/*.png
+tools/crawl-lab/*.png
+
+# 旧版瓯城1024归档（2026-10-23 被 wenzhou-player 覆盖）
+_archive_oucheng_v1/
+
+# 凭证与本地环境（禁止入库）
+.DS_Store
+.venv/
+.claude/
+
+# 大文件与备份
+_backup_realmap_1023/
+_backup_upgrade_1024/
+tools/crawl-lab/profiles/
+tools/crawl-lab/.state/
+
+# 与游戏无关的本地大目录（绝不入库）
+phone hack/
+_sync/
+wenzhou-qudi/
+
+# 旧 git 存档（2026-10-25 修复 22G 误提交）
+.git-OLD-baseline-22g/
+
+# 采集工具链（含浏览器登录态 profile 与真实手机号，绝不公开）
+tools/crawl-lab/
+
+# 2026-10-25 第一次重建时误吸的旧 git 存档（含登录态，绝不入库）
+.git-OLD-leaky/

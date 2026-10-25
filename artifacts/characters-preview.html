@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>温州玩家 · 人物同步预览</title>
+<style>
+  *{box-sizing:border-box}body{margin:0;padding:28px;background:#eee7d5;color:#2e3a33;font:700 15px/1.6 'PingFang SC',sans-serif}main{max-width:1100px;margin:auto}h1{font-size:26px;margin:0 0 8px}p{color:#647061}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}.card{padding:14px;text-align:center;border:2px solid #2e3a33;border-radius:14px;background:#f7f2e3;box-shadow:0 5px 0 #c5baa0}.body{display:block;width:120px;height:170px;margin:auto}.face{width:44px;height:44px;border:2px solid var(--c,#2e3a33);border-radius:50%;background:#efe7d2}.motion{margin:24px 0;border:2px solid #2e3a33;border-radius:14px;background:#f7f2e3;overflow:auto}canvas{display:block;width:100%;min-width:700px;height:auto}a{color:#976020}small{display:block;color:#647061}
+</style>
+<main>
+  <h1>温州玩家 · 人物同步预览</h1>
+  <p>游戏地图、队伍头像及结尾人物已接入本地 SVG。游客服装沿用八类需求的标签色。</p>
+  <div id="roles" class="grid"></div>
+  <div class="motion"><canvas id="motion" width="1000" height="230" aria-label="导游、行走、坐下、掉队和名人状态演示"></canvas></div>
+  <div id="guests" class="grid"></div>
+  <p><a href="../web/index.html">打开本地游戏</a> · 此页为素材及状态预览，实际操作效果以游戏为准。</p>
+</main>
+<script src="../web/characters.js"></script>
+<script src="../web/render.js"></script>
+<script>
+const C=WZ.characters;
+function card(parent,kind,label,portrait){
+  const item=document.createElement('div');item.className='card';
+  if(portrait){const face=document.createElement('img');face.className='face';face.src=C.src(kind,true);face.alt=label+'头像';item.appendChild(face);}
+  const body=document.createElement('img');body.className='body';body.src=C.src(kind);body.alt=label;item.appendChild(body);
+  const name=document.createElement('div');name.textContent=label;item.appendChild(name);parent.appendChild(item);
+}
+for(const [kind,label,portrait] of [['hero','导游',true],['customer','游客原型',false],['shopkeeper','店铺接待吉祥物',true],['scholar','名人 NPC',false]])card(document.querySelector('#roles'),kind,label,portrait);
+for(const [tag,label] of [['walk','走不动'],['food','吃不惯'],['crowd','怕挤挤'],['shop','买买买'],['bored','没劲儿'],['rush','催催催'],['toilet','憋不住'],['any','都行哥']])card(document.querySelector('#guests'),tag,label,true);
+const canvas=document.querySelector('#motion'),ctx=canvas.getContext('2d');
+function frame(t){
+  ctx.clearRect(0,0,1000,230);ctx.fillStyle='#e3d9be';ctx.fillRect(0,174,1000,2);
+  for(const [i,label,options] of [[0,'导游 · 小旗',{hat:'cap',flag:true,moving:true}],[1,'游客 · 行走',{tag:'crowd',moving:true,dir:{x:-1}}],[2,'游客 · 坐下',{tag:'walk',sit:true}],[3,'游客 · 耐心归零',{tag:'shop',gray:true}],[4,'名人 · 人形立绘',{hat:'npc'}]]){
+    ctx.save();ctx.translate(100+i*200,174);ctx.scale(2.2,2.2);WZ.render.drawPerson(ctx,0,0,Object.assign({anim:t/140},options));ctx.restore();ctx.fillStyle='#2e3a33';ctx.font='bold 16px sans-serif';ctx.textAlign='center';ctx.fillText(label,100+i*200,211);
+  }
+  requestAnimationFrame(frame);
+}requestAnimationFrame(frame);
+</script>
+</html>

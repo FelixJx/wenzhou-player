@@ -1,0 +1,791 @@
+{
+ "note": "每个游戏地点对应的真实地点（高德 PlaceSearch，GCJ-02，2026-10-23）。stayMin = 真实停留分钟；远郊两站 stayMin 含往返车程（drive 为高德驾车单程分钟）。",
+ "geo": {
+  "bank": [
+   [
+    120.64,
+    28.0222
+   ],
+   [
+    120.6485,
+    28.0231
+   ],
+   [
+    120.6506,
+    28.0235
+   ],
+   [
+    120.6538,
+    28.0239
+   ],
+   [
+    120.659,
+    28.0251
+   ],
+   [
+    120.6686,
+    28.025
+   ],
+   [
+    120.672,
+    28.0249
+   ]
+  ],
+  "island": {
+   "lng": 120.64,
+   "lat": 28.0285,
+   "rx": 0.012,
+   "ry": 0.0035
+  },
+  "ferry": [
+   [
+    120.647538,
+    28.023064
+   ],
+   [
+    120.647688,
+    28.026452
+   ]
+  ],
+  "pagodas": [
+   [
+    120.6452,
+    28.0268
+   ],
+   [
+    120.6482,
+    28.0271
+   ]
+  ],
+  "lakes": [
+   {
+    "lng": 120.6462,
+    "lat": 28.0118,
+    "rx": 0.0013,
+    "ry": 0.003
+   }
+  ],
+  "parks": [
+   {
+    "lng": 120.6508,
+    "lat": 28.009,
+    "rx": 0.0014,
+    "ry": 0.0012
+   },
+   {
+    "lng": 120.6626,
+    "lat": 28.0193,
+    "rx": 0.001,
+    "ry": 0.0008
+   }
+  ]
+ },
+ "places": [
+  {
+   "id": "center",
+   "name": "五马街游客中心",
+   "types": [
+    "home"
+   ],
+   "lng": 120.658703,
+   "lat": 28.012122,
+   "stayMin": 0,
+   "knowledgeId": "k_center",
+   "poi": "B0IGBSJH8P"
+  },
+  {
+   "id": "wuma",
+   "name": "五马街·公园路",
+   "types": [
+    "shop",
+    "sight"
+   ],
+   "lng": 120.6625,
+   "lat": 28.0131,
+   "stayMin": 45,
+   "knowledgeId": "k_wuma",
+   "crowdWindow": [
+    300,
+    600
+   ],
+   "realName": "五马历史文化街区（五马街—公园路口）",
+   "hours": "00:00-24:00",
+   "info": {
+    "sign": "民国老街·老字号",
+    "src": [
+     "高德",
+     "温州文旅局"
+    ]
+   }
+  },
+  {
+   "id": "mochi",
+   "name": "墨池公园",
+   "types": [
+    "sight",
+    "rest"
+   ],
+   "lng": 120.660409,
+   "lat": 28.017655,
+   "stayMin": 64,
+   "knowledgeId": "k_mochi",
+   "poi": "B02410WK80",
+   "note": "逛公园 + 园内美术馆、吟谭楼约一小时；王羲之描字关卡要求停满 64 分钟",
+   "hours": "00:00-24:00",
+   "info": {
+    "sign": "墨池·吟谭楼·美术馆",
+    "cost": 0,
+    "src": [
+     "高德",
+     "鹿城区政府"
+    ]
+   }
+  },
+  {
+   "id": "xianqian",
+   "name": "县前汤圆(县前头店)",
+   "types": [
+    "food"
+   ],
+   "lng": 120.66063,
+   "lat": 28.015331,
+   "stayMin": 25,
+   "knowledgeId": "k_xianqian",
+   "poi": "B024100WX6",
+   "realName": "县前汤圆（县前头店）一带",
+   "hours": "06:00-20:00",
+   "info": {
+    "cost": 16,
+    "sign": "汤圆·老字号",
+    "src": [
+     "高德",
+     "大众点评"
+    ],
+    "rating": 3.9,
+    "reviews": 455,
+    "ratingSrc": "大众点评",
+    "asOf": "10/24"
+   }
+  },
+  {
+   "id": "teastall",
+   "name": "席上茶事·墨池坊",
+   "types": [
+    "rest"
+   ],
+   "lng": 120.658969,
+   "lat": 28.017252,
+   "stayMin": 45,
+   "knowledgeId": "k_teastall",
+   "realName": "席上茶事（墨池坊27号）",
+   "hours": "09:00-21:00",
+   "info": {
+    "sign": "茶室·墨池坊",
+    "src": [
+     "高德"
+    ],
+    "note": "营业时间为估计，待核"
+   }
+  },
+  {
+   "id": "pier",
+   "name": "江心屿轮渡码头",
+   "types": [
+    "sight"
+   ],
+   "lng": 120.647538,
+   "lat": 28.023064,
+   "stayMin": 10,
+   "knowledgeId": "k_pier",
+   "poi": "B0JALZ7USA",
+   "note": "轮渡过江约 5 分钟",
+   "hours": "06:30-22:00",
+   "info": {
+    "sign": "轮渡过江",
+    "cost": 0,
+    "src": [
+     "高德"
+    ],
+    "note": "渡轮首末班待核"
+   }
+  },
+  {
+   "id": "lane1",
+   "name": "大同巷",
+   "types": [
+    "lane"
+   ],
+   "lng": 120.657418,
+   "lat": 28.012817,
+   "stayMin": 0,
+   "knowledgeId": "k_lane1"
+  },
+  {
+   "id": "lane2",
+   "name": "仓桥街·夏鼐故居",
+   "types": [
+    "lane",
+    "sight"
+   ],
+   "lng": 120.654746,
+   "lat": 28.017866,
+   "stayMin": 30,
+   "knowledgeId": "k_lane2",
+   "hours": "09:00-17:00",
+   "closedDow": [
+    1
+   ],
+   "info": {
+    "sign": "考古学家夏鼐故居·免费",
+    "cost": 0,
+    "src": [
+     "高德",
+     "温州博物馆",
+     "大众点评"
+    ],
+    "rating": 4.5,
+    "reviews": 87,
+    "ratingSrc": "大众点评",
+    "asOf": "10/24"
+   }
+  },
+  {
+   "id": "toilet1",
+   "name": "公厕·全坊巷",
+   "types": [
+    "toilet"
+   ],
+   "lng": 120.656646,
+   "lat": 28.010839,
+   "stayMin": 0,
+   "knowledgeId": "k_toilet1"
+  },
+  {
+   "id": "toilet2",
+   "name": "公厕·广场路",
+   "types": [
+    "toilet"
+   ],
+   "lng": 120.657422,
+   "lat": 28.01451,
+   "stayMin": 0,
+   "knowledgeId": "k_toilet2"
+  },
+  {
+   "id": "toilet3",
+   "name": "公厕·万岁里",
+   "types": [
+    "toilet"
+   ],
+   "lng": 120.654338,
+   "lat": 28.021808,
+   "stayMin": 0,
+   "knowledgeId": "k_toilet3"
+  },
+  {
+   "id": "stage",
+   "name": "吴家老宅庭院剧场",
+   "types": [
+    "stage",
+    "sight"
+   ],
+   "lng": 120.660575,
+   "lat": 28.011775,
+   "stayMin": 45,
+   "knowledgeId": "k_stage",
+   "note": "高德：纱帽河，剧场；演出内容待核",
+   "hours": "10:00-21:00",
+   "info": {
+    "sign": "老宅庭院剧场",
+    "src": [
+     "高德"
+    ],
+    "note": "演出时间待核"
+   }
+  },
+  {
+   "id": "xiechi",
+   "name": "池上楼·谢池巷",
+   "types": [
+    "sight",
+    "lane"
+   ],
+   "lng": 120.666146,
+   "lat": 28.012707,
+   "stayMin": 40,
+   "knowledgeId": "k_xiechi",
+   "hours": "09:00-17:00",
+   "closedDow": [
+    1
+   ],
+   "info": {
+    "sign": "谢灵运纪念馆·苏式园林",
+    "cost": 0,
+    "src": [
+     "高德",
+     "温州文旅局"
+    ]
+   }
+  },
+  {
+   "id": "shuixin",
+   "name": "水心",
+   "types": [
+    "food",
+    "rest"
+   ],
+   "lng": 120.647939,
+   "lat": 28.00261,
+   "stayMin": 30,
+   "knowledgeId": "k_shuixin",
+   "realName": "水心（水心菜场一带）",
+   "hours": "06:00-20:00",
+   "info": {
+    "sign": "菜场小吃",
+    "src": [
+     "高德"
+    ],
+    "note": "具体店铺待核"
+   }
+  },
+  {
+   "id": "jiangxin",
+   "name": "江心屿",
+   "types": [
+    "sight",
+    "rest"
+   ],
+   "lng": 120.647725,
+   "lat": 28.027225,
+   "stayMin": 120,
+   "knowledgeId": "k_jiangxin",
+   "poi": "B0I174MG5B",
+   "hours": "08:00-22:00",
+   "info": {
+    "rating": 4.9,
+    "ratingSrc": "大众点评",
+    "reviews": 13352,
+    "cost": 30,
+    "sign": "双塔·诗之岛",
+    "src": [
+     "高德",
+     "大众点评",
+     "携程"
+    ],
+    "asOf": "10/24",
+    "statusNote": "19:30 停止入园"
+   }
+  },
+  {
+   "id": "shuomen",
+   "name": "朔门古港遗址",
+   "types": [
+    "sight"
+   ],
+   "lng": 120.654529,
+   "lat": 28.02354,
+   "stayMin": 30,
+   "knowledgeId": "k_shuomen",
+   "poi": "B0JGJL8CY9",
+   "hours": "08:30-22:00",
+   "info": {
+    "sign": "宋元古港遗址·夜景",
+    "cost": 0,
+    "src": [
+     "高德",
+     "温州文旅局",
+     "大众点评"
+    ],
+    "note": "展示馆需公众号实名预约",
+    "rating": 4.6,
+    "reviews": 147,
+    "ratingSrc": "大众点评",
+    "asOf": "10/24"
+   }
+  },
+  {
+   "id": "nanxi",
+   "name": "楠溪江·丽水街（坐车）",
+   "types": [
+    "sight",
+    "rest"
+   ],
+   "lng": 120.6492,
+   "lat": 28.0226,
+   "stayMin": 200,
+   "drive": 55,
+   "knowledgeId": "k_nanxi",
+   "realName": "丽水古街（永嘉岩头）",
+   "note": "上车点在信河街口；stayMin = 往返车程约 110 分钟 + 游玩 90 分钟",
+   "hours": "08:00-17:00",
+   "info": {
+    "cost": 15,
+    "sign": "丽水古街·苍坡古村",
+    "src": [
+     "高德",
+     "携程"
+    ]
+   }
+  },
+  {
+   "id": "yandang",
+   "name": "雁荡山（坐车）",
+   "types": [
+    "sight",
+    "rest"
+   ],
+   "lng": 120.666,
+   "lat": 28.0245,
+   "stayMin": 300,
+   "drive": 75,
+   "knowledgeId": "k_yandang",
+   "realName": "雁荡山灵峰景区",
+   "note": "上车点在望江东路；stayMin = 往返车程约 150 分钟 + 游玩 150 分钟",
+   "hours": "06:30-21:30",
+   "info": {
+    "ratingSrc": "携程",
+    "cost": 170,
+    "sign": "灵峰夜景·大龙湫",
+    "src": [
+     "高德",
+     "携程"
+    ],
+    "rating": 4.6,
+    "reviews": 7994,
+    "asOf": "10/24",
+    "statusNote": "携程显示「暂停营业，恢复时间待定」（7 月台风后），去前请电话确认"
+   }
+  },
+  {
+   "id": "tanghe",
+   "name": "塘河夜画",
+   "types": [
+    "sight",
+    "rest"
+   ],
+   "lng": 120.669041,
+   "lat": 27.99844,
+   "stayMin": 50,
+   "knowledgeId": "k_tanghe",
+   "poi": "B0FFLO1B7R",
+   "note": "白鹿洲公园北门游船码头；19:00 后开船",
+   "hours": "19:00-21:30",
+   "info": {
+    "rating": 4.8,
+    "ratingSrc": "大众点评",
+    "reviews": 573,
+    "cost": 168,
+    "sign": "游船灯光演出",
+    "src": [
+     "高德",
+     "大众点评",
+     "去哪儿",
+     "江南游报"
+    ],
+    "asOf": "10/24"
+   }
+  },
+  {
+   "id": "f_changren",
+   "name": "长人馄饨铺(解放街店)",
+   "types": [
+    "food"
+   ],
+   "lng": 120.660108,
+   "lat": 28.014522,
+   "stayMin": 25,
+   "knowledgeId": "k_xianqian_wonton",
+   "hours": "07:00-18:30",
+   "info": {
+    "rating": 4.0,
+    "ratingSrc": "大众点评",
+    "reviews": 4843,
+    "ctrip": 4.8,
+    "cost": 25,
+    "sign": "馄饨·老字号",
+    "src": [
+     "高德",
+     "大众点评",
+     "携程"
+    ],
+    "asOf": "10/24"
+   }
+  },
+  {
+   "id": "f_airen",
+   "name": "矮人松糕(小南店)",
+   "types": [
+    "food"
+   ],
+   "lng": 120.658641,
+   "lat": 28.007174,
+   "stayMin": 20,
+   "knowledgeId": "k_xianqian_stores",
+   "hours": "06:30-17:30",
+   "info": {
+    "rating": 4.3,
+    "ratingSrc": "大众点评",
+    "reviews": 557,
+    "ctrip": 4.8,
+    "cost": 28,
+    "sign": "松糕·古早味",
+    "src": [
+     "高德",
+     "大众点评",
+     "携程"
+    ],
+    "asOf": "10/24"
+   }
+  },
+  {
+   "id": "f_paidui",
+   "name": "排队烧饼(仓桥街店)",
+   "types": [
+    "food"
+   ],
+   "lng": 120.657,
+   "lat": 28.018315,
+   "stayMin": 20,
+   "queueMin": 60,
+   "knowledgeId": "k_xianqian_stores",
+   "hours": "07:00-17:00",
+   "info": {
+    "cost": 9,
+    "sign": "炭炉烧饼·1995年",
+    "src": [
+     "高德",
+     "天眼查",
+     "抖音",
+     "大众点评"
+    ],
+    "note": "常排队一小时以上",
+    "rating": 4.2,
+    "reviews": 182,
+    "ratingSrc": "大众点评",
+    "asOf": "10/24"
+   }
+  },
+  {
+   "id": "f_fuqi",
+   "name": "夫妻鱼圆店",
+   "types": [
+    "food"
+   ],
+   "lng": 120.665353,
+   "lat": 28.004733,
+   "stayMin": 25,
+   "knowledgeId": "k_xianqian_fish",
+   "hours": "00:00-24:00",
+   "info": {
+    "cost": 18,
+    "sign": "鱼圆·24小时",
+    "src": [
+     "高德",
+     "抖音"
+    ]
+   }
+  },
+  {
+   "id": "f_shamaohe",
+   "name": "纱帽河老面馆",
+   "types": [
+    "food"
+   ],
+   "lng": 120.656328,
+   "lat": 28.009725,
+   "stayMin": 30,
+   "knowledgeId": "k_xianqian_fish",
+   "hours": "00:00-24:00",
+   "info": {
+    "sign": "敲鱼面·44年老店",
+    "src": [
+     "高德",
+     "抖音",
+     "大众点评"
+    ],
+    "rating": 3.5,
+    "reviews": 76,
+    "ratingSrc": "大众点评",
+    "asOf": "10/24"
+   }
+  },
+  {
+   "id": "f_wzdjj",
+   "name": "温州大酒家瓯菜馆(蝉街)",
+   "types": [
+    "food"
+   ],
+   "lng": 120.654902,
+   "lat": 28.011058,
+   "stayMin": 75,
+   "knowledgeId": "k_wuma_stores",
+   "hours": "11:00-13:00,17:00-20:00",
+   "info": {
+    "rating": 4.2,
+    "ratingSrc": "大众点评",
+    "reviews": 1837,
+    "cost": 114,
+    "sign": "瓯菜·老字号",
+    "src": [
+     "高德",
+     "大众点评"
+    ],
+    "asOf": "10/24"
+   }
+  },
+  {
+   "id": "f_ouyan",
+   "name": "瓯宴府(公园路店)",
+   "types": [
+    "food"
+   ],
+   "lng": 120.663315,
+   "lat": 28.013832,
+   "stayMin": 75,
+   "knowledgeId": "k_wuma_stores",
+   "hours": "10:00-13:00,16:00-20:00",
+   "info": {
+    "rating": 4.9,
+    "ratingSrc": "大众点评",
+    "reviews": 611,
+    "cost": 286,
+    "sign": "瓯菜宴席",
+    "src": [
+     "高德",
+     "大众点评",
+     "携程"
+    ],
+    "asOf": "10/24"
+   }
+  },
+  {
+   "id": "f_zhengliang",
+   "name": "正亮海鲜(温富大厦店)",
+   "types": [
+    "food"
+   ],
+   "lng": 120.653041,
+   "lat": 28.007134,
+   "stayMin": 75,
+   "knowledgeId": "k_xianqian_fish",
+   "hours": "10:00-01:00",
+   "info": {
+    "rating": 4.4,
+    "ratingSrc": "大众点评",
+    "reviews": 2063,
+    "cost": 153,
+    "sign": "海鲜·本地人推荐",
+    "src": [
+     "高德",
+     "大众点评",
+     "抖音"
+    ],
+    "asOf": "10/24"
+   }
+  },
+  {
+   "id": "s_miaoguo",
+   "name": "妙果寺·九山公园",
+   "types": [
+    "sight",
+    "rest"
+   ],
+   "lng": 120.650683,
+   "lat": 28.008742,
+   "stayMin": 40,
+   "knowledgeId": "k_lane2",
+   "hours": "06:00-17:00",
+   "info": {
+    "cost": 0,
+    "sign": "唐代古刹·九山湖",
+    "src": [
+     "高德",
+     "温州本地宝"
+    ]
+   }
+  },
+  {
+   "id": "s_qingnian",
+   "name": "庆年坊",
+   "types": [
+    "lane"
+   ],
+   "lng": 120.649121,
+   "lat": 28.017342,
+   "stayMin": 0,
+   "knowledgeId": "k_lane1",
+   "hours": "00:00-24:00",
+   "info": {
+    "sign": "马头墙古巷·人少",
+    "src": [
+     "高德",
+     "温州日报"
+    ]
+   }
+  },
+  {
+   "id": "p_wuweihe",
+   "name": "五味和(五马步行街店)",
+   "types": [
+    "shop"
+   ],
+   "lng": 120.661131,
+   "lat": 28.012646,
+   "stayMin": 20,
+   "knowledgeId": "k_wuma_shop",
+   "hours": "09:00-21:30",
+   "info": {
+    "sign": "老字号糕点手信",
+    "src": [
+     "高德"
+    ]
+   }
+  },
+  {
+   "id": "p_baiweilin",
+   "name": "百味林(行前店)",
+   "types": [
+    "shop"
+   ],
+   "lng": 120.664043,
+   "lat": 28.021674,
+   "stayMin": 20,
+   "knowledgeId": "k_wuma_shop",
+   "hours": "08:00-21:30",
+   "info": {
+    "sign": "温州特产零食",
+    "src": [
+     "高德"
+    ]
+   }
+  },
+  {
+   "id": "p_ouxiu",
+   "name": "温州瓯绣施成权工作室",
+   "types": [
+    "shop"
+   ],
+   "lng": 120.662047,
+   "lat": 28.004023,
+   "stayMin": 30,
+   "knowledgeId": "k_wuma_shop",
+   "hours": "08:00-17:00",
+   "info": {
+    "sign": "非遗瓯绣",
+    "src": [
+     "高德"
+    ]
+   }
+  }
+ ],
+ "zones": [
+  {
+   "id": "wuma_crowd",
+   "placeId": "wuma",
+   "lng0": 120.6595,
+   "lng1": 120.664,
+   "lat0": 28.0118,
+   "lat1": 28.0138
+  }
+ ]
+}

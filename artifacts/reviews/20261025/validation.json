@@ -1,0 +1,22 @@
+{
+  "created_at": "2026-10-25T07:08:25.266496+00:00",
+  "source_docx_sha256": "26c3464bb575b528b1ce1c88c444ed77916105149704e3d2a2e95f4310b6478e",
+  "source_tables_read": 5,
+  "suites": {
+    "rules": 27,
+    "upgrades": 9,
+    "advisor": 9,
+    "score": 17,
+    "ratings": 5,
+    "day": 6,
+    "tts": 7
+  },
+  "unit_cases_passed": 80,
+  "path_checks_passed": 11155,
+  "rule_replays": 270,
+  "browser_playthrough_completed": false,
+  "real_player_sessions": 0,
+  "live_qwen_verified": false,
+  "router_test": "in-process handler + isolated in-memory SQLite, no HTTP requests",
+  "core_files_unchanged_during_replays": true
+}
