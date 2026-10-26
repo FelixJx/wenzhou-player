@@ -551,10 +551,12 @@ window.WZ = window.WZ || {};
           engine().addFloat(pp.x, pp.y - 30, c.text, c.color);
           break;
         }
-        case 'score': { // 积分（10/25）：队伍位置飘「+N」，HUD 计分
+        case 'score': { // 积分：队伍位置飘「+N」，HUD 计分；大额爆屏（亲子迭代）
           const pp = engine().getPlayerPos();
           engine().addFloat(pp.x + 14, pp.y - 52, '+' + c.delta + ' 分', '#ffd166');
-          if (WZ.sfx) WZ.sfx.play('calm');
+          if (Math.abs(c.delta) >= 8 && ui().scoreBurst) ui().scoreBurst(c.delta, c.reason || '得分');
+          if (WZ.sfx) WZ.sfx.play(c.delta >= 0 ? 'celeb' : 'drop');
+          if (ui().hud.setScore) ui().hud.setScore(run.state.score);
           break;
         }
         case 'stay': if (WZ.sfx) WZ.sfx.play('stay'); onStay(c); break;
@@ -739,6 +741,7 @@ window.WZ = window.WZ || {};
   // 商圈商家清单（shopsheet.js）需要的钩子——并入 WZ.main 字面量（先赋值再挂会炸）
   WZ.main = {
     flags, get run() { return run; }, startRun,
+    handle, // 测试/调试用：直接过命令管线（E2E 触发积分爆屏等）
     dayInfo: () => (day && day.zi >= 0 ? { districtId: day.plan[day.zi].id, zi: day.zi } : null),
     walkToShop: e => {
       if (!run || ended) return;

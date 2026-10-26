@@ -36,7 +36,7 @@
       if (count() === 1) {
         gest = { sx: p.x, sy: p.y, lx: p.x, ly: p.y, moved: false, long: false, pinch: false };
         clearTimeout(lpTimer);
-        lpTimer = setTimeout(function () { if (gest && !gest.moved && !gest.pinch) { gest.long = true; if (h.onLongPress) h.onLongPress(gest.sx, gest.sy, ev); } }, 500);
+        lpTimer = setTimeout(function () { if (gest && !gest.moved && !gest.pinch) { gest.long = true; if (h.onLongPress) h.onLongPress(gest.sx, gest.sy, ev); } }, 420); // 亲子适配：长按更快
       } else if (count() === 2 && gest) {
         gest.pinch = true; gest.moved = true; clearTimeout(lpTimer);
         var ks = Object.keys(ptrs), a = ptrs[ks[0]], b = ptrs[ks[1]];
@@ -54,7 +54,7 @@
         gest.d0 = d;
         return;
       }
-      if (!gest.moved && Math.hypot(p.x - gest.sx, p.y - gest.sy) > 10) { gest.moved = true; clearTimeout(lpTimer); }
+      if (!gest.moved && Math.hypot(p.x - gest.sx, p.y - gest.sy) > 14) { gest.moved = true; clearTimeout(lpTimer); } // 亲子适配：14px 才算拖动
       if (gest.moved && !gest.long && h.onDrag) h.onDrag(p.x - gest.lx, p.y - gest.ly);
       gest.lx = p.x; gest.ly = p.y;
     }

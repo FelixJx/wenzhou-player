@@ -1651,4 +1651,20 @@ ui.showTransit = function (o, onDone) {
   setTimeout(function () { bus.style.left = 'calc(100% - 56px)'; }, 60);
   setTimeout(function () { if (onDone) onDone(); }, 1800);
 };
+// ========== 带队积分爆屏（PRD-v4 亲子迭代 10/25）：全屏金光 + 大数字弹跳，小朋友一眼看到得分 ==========
+ui.scoreBurst = function (delta, label) {
+  ensureLayers();
+  var delta0 = delta || 0;
+  var big = Math.abs(delta0) >= 8;
+  var box = el('div', 'score-burst' + (big ? ' big' : '') + (delta0 < 0 ? ' neg' : ''));
+  var rays = el('div', 'sb-rays');
+  box.appendChild(rays);
+  box.appendChild(el('div', 'sb-icon', delta0 >= 0 ? '⭐' : '💧'));
+  box.appendChild(el('div', 'sb-num', (delta0 >= 0 ? '+' : '') + delta0));
+  box.appendChild(el('div', 'sb-label', label || '得分'));
+  overlay.appendChild(box);
+  setTimeout(function () { box.classList.add('out'); }, big ? 950 : 700);
+  setTimeout(function () { if (box.parentNode) box.parentNode.removeChild(box); }, (big ? 950 : 700) + 350);
+  return box;
+};
 })(window.WZ);

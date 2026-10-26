@@ -49,3 +49,6 @@
   对抗修复再加四项：activeZones 提升出分支（等轴每帧崩）、屏幕层 p 未赋值（分支后补）、nearPlace 预标记致「点旁边店永不 arrive」（goTo 清标记）、标签避让挤掉的店点不到（tapGround 前加 ≤28 世界单位邻近店命中=demo hit() 口径）。
   验证：8 套门禁全绿（rules27/score17/day6/ratings5/upgrades9/advisor9/path/api17+A1）；E2E 全流程截图验收：等轴五马街（体素楼+真实街巷+数百实采店钉+惠旗+队伍）→ 点「温州怡合医院」→ 停站卡 5 人逐个表态（宁空勿编评分行）→ 收队 → 结算（5/5 带回 + 体验评审平均 3.8 星 + 时间分）pageerror 0。
 - [Lead 收尾·商家清单+开场+上线] 商圈商家清单（shopsheet.js，对照 demo §③：全部/⭐有评分/吃/咖啡茶饮/买/看 筛选 + 按评分排序 + 点行走店，930 家实测）+ 圈内「🍽 商家」按钮；开场动画确认在位（intromount.js，已看过者清站点数据重看）；「点旁边的店没反应」根因修复（goTo 清 nearPlace 预标记 + 28 单位邻近店命中兜底）；WZ.main 钩子顺序修复。已部署 player.yaosenai.cn（health ai:true troubles:83，/play/ 0.21s，新脚本 4 处全 200）。GitHub: FelixJx/wenzhou-player（private，master 已推）。工程注记：.git 曾被误提交 22G（挪出的旧 .git 目录被 add 扫入），已 amend 移出并 ignore，仓库现 ~50MB 级。
+- [Lead 亲子与折叠屏适配（10/25 深化迭代）] ①画面放大：视野收窄 280→235（城市/小人同屏 +19%）+ POI 图钉 7.5→9/店名字号 11→12.5 + 游客命中半宽 17→24（纵向 ±6/10 放宽）；②触控放宽：拖动阈值 10→14px、长按 500→420ms；③积分爆屏：大额（≥8 分）触发全屏金光放射 + 大数字弹跳 + 图标 bounce（ui.scoreBurst），负分蓝色水滴/深蓝描边，音效 celeb/drop；④折叠屏三档适配：≤480 覆盖屏（触控 56px/字号 17-18）、481~1024 展开屏（游戏全屏铺开 + 卡片页居中）、>1024 桌面（沿用此前网页版）；⑤测试钩子：WZ.main.handle 暴露命令管线（E2E 可直触发 score 爆屏）。
+  修复：ui.scoreBurst 追加落点在 IIFE 外（closer 移末，与 book/ui 同类问题第 3 次——追加代码必须先查 closer）。
+  验证：A1/rules27/score17/day6/api17 全绿；三屏截图（280 覆盖屏 / 717 展开屏 / 390 手机）布局无破；爆屏出现与收起实测 ✓ pageerror 0。

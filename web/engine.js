@@ -505,7 +505,8 @@
   }
   function hitEnt(ent, wx, wy) {
     var h = WZ.characters ? WZ.characters.height(personOpts(ent)) : 36;
-    return Math.abs(wx - ent.x) <= (WZ.characters ? 17 : 12) && wy >= ent.y - h && wy <= ent.y + 6;
+    // 亲子适配：命中半宽 24（原 17）、纵向多让 6px，小朋友点人更容易
+    return Math.abs(wx - ent.x) <= (WZ.characters ? 24 : 16) && wy >= ent.y - h - 6 && wy <= ent.y + 10;
   }
   // 长按：旗子/店铺 → 'longPlace'（推荐理由 / 店铺小卡）；游客 → 同点按
   function onLongPress(sx, sy) {

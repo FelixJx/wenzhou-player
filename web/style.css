@@ -1083,3 +1083,82 @@ html.land #overlay.ov-side .tl-name { font-size: 13px; }
   background: var(--bg); padding: 8px 0 4px; margin: 0;
   border-top: 1px solid var(--line);
 }
+
+/* ---------- 带队积分爆屏（PRD-v4 亲子迭代） ---------- */
+.score-burst {
+  position: absolute; inset: 0; z-index: 45;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  pointer-events: none;
+  animation: sb-pop 0.42s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+.score-burst.out { animation: sb-out 0.32s ease-in both; }
+.score-burst.big .sb-num { font-size: 96px; }
+.sb-rays {
+  position: absolute; width: 130vmax; height: 130vmax;
+  background: repeating-conic-gradient(rgba(255, 209, 102, 0.16) 0deg 14deg, rgba(255, 209, 102, 0) 14deg 28deg);
+  animation: sb-spin 2.6s linear infinite;
+}
+.score-burst.neg .sb-rays { background: repeating-conic-gradient(rgba(93, 60, 40, 0.2) 0deg 14deg, rgba(93, 60, 40, 0) 14deg 28deg); }
+@keyframes sb-spin { to { transform: rotate(360deg); } }
+.sb-icon { position: relative; font-size: 54px; animation: sb-icon-bounce 0.5s cubic-bezier(0.2, 1.6, 0.4, 1) both; }
+@keyframes sb-icon-bounce { from { transform: scale(0); } 60% { transform: scale(1.35); } to { transform: scale(1); } }
+.sb-num {
+  position: relative;
+  font: 900 72px/1 var(--mono);
+  color: #ffd166;
+  -webkit-text-stroke: 3px #4a3510;
+  text-shadow: 0 4px 0 rgba(74, 35, 10, 0.5), 0 0 40px rgba(255, 209, 102, 0.55);
+  animation: sb-num-grow 0.5s cubic-bezier(0.2, 1.5, 0.4, 1) 0.1s both;
+}
+.score-burst.neg .sb-num { color: #9fc4e8; -webkit-text-stroke-color: #22354f; text-shadow: 0 4px 0 rgba(20, 35, 60, 0.5); }
+@keyframes sb-num-grow { from { transform: scale(0.2) rotate(-8deg); } to { transform: scale(1); } }
+.sb-label { position: relative; margin-top: 10px; font-size: 17px; font-weight: 700; color: #fff7ea;
+  background: rgba(51, 46, 38, 0.85); padding: 4px 14px; border-radius: 999px; }
+@keyframes sb-pop { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: scale(1); } }
+@keyframes sb-out { to { opacity: 0; transform: scale(1.15); } }
+
+/* ---------- 折叠屏适配（PRD-v4 亲子迭代） ----------
+   覆盖屏（≤480 竖屏）：字号/触控目标全面放大；
+   展开屏（481~1024 近方/横）：游戏全屏铺开 + 控件加大，页面卡片双列。 */
+@media (max-width: 480px) {
+  .page { font-size: 17px; }
+  .btn { min-height: 56px; font-size: 18px; }
+  .place { min-height: 70px; }
+  .place-name { font-size: 17px; }
+  .stay-card { padding: 12px 66px 12px 14px; }
+  .stay-card .btn { min-height: 56px; font-size: 18px; }
+  .hud-score b { font-size: 17px; }
+  .day-card { padding: 12px 14px; }
+  .dc-head b { font-size: 17px; }
+  .dc-step { width: 36px; height: 36px; font-size: 18px; }
+  .dc-stay-n { font-size: 16px; }
+}
+@media (min-width: 481px) and (max-width: 1024px) {
+  /* 折叠屏展开/小平板：全屏铺开 + 控件加大 + 手册双列 */
+  #app { width: 100vw; height: 100vh; }
+  @supports (height: 100dvh) { #app { height: 100dvh; } }
+  #game { cursor: crosshair; }
+  .page {
+    inset: 0; margin: auto;
+    width: min(560px, 92vw); height: min(900px, 92vh);
+    border-radius: 22px; border: 2px solid #4a4133;
+    box-shadow: 0 24px 80px rgba(15, 10, 4, 0.5);
+  }
+  .page.dim, .epi, .ending { width: auto; height: auto; border: 0; border-radius: 0; box-shadow: none; margin: 0; }
+  .btn { min-height: 56px; font-size: 18px; }
+  .place { min-height: 72px; }
+  .place-name { font-size: 17px; }
+  .day-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .day-card { padding: 14px; }
+  .dc-head b { font-size: 18px; }
+  .hud-bar, .hud-guests { max-width: 760px; margin-left: auto; margin-right: auto; }
+  #dock .stay-card, #dock .interrupt { max-width: 680px; margin-left: auto; margin-right: auto; }
+  .hud-score b { font-size: 17px; }
+  #app::after {
+    content: "网页版 · WASD 移动 / 点击地面行走 · 点游客哄";
+    position: absolute; right: 14px; bottom: 10px; z-index: 5;
+    font-size: 13px; color: rgba(244, 236, 220, 0.75);
+    background: rgba(51, 46, 38, 0.55); padding: 4px 10px; border-radius: 999px;
+    pointer-events: none;
+  }
+}

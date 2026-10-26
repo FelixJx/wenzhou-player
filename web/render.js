@@ -782,16 +782,16 @@
         var st = POI_STYLE[q.poi.cat] || POI_STYLE.life;
         var nm = Array.from(q.poi.name.replace(/[（(].*?[)）]/g, ''));
         var label = nm.length > 9 ? nm.slice(0, 8).join('') + '…' : nm.join('');
-        ctx.font = 'bold 11px ' + FONT;
+        ctx.font = 'bold 12.5px ' + FONT; // 亲子适配：店名更大更好点
         var tw = ctx.measureText(label).width;
-        var box = { x: q.sx - 8, y: q.sy - 8, w: 18 + tw, h: 16 };
+        var box = { x: q.sx - 10, y: q.sy - 10, w: 22 + tw, h: 20 };
         var flagBox = q.flag ? { x: q.sx + 2, y: q.sy - 40, w: 26, h: 34 } : null;
         if (overlaps(boxes, box) || (flagBox && overlaps(boxes, flagBox) && !q.flag)) return;
         boxes.push(box); budget--;
         if (q.flag) { var fr = drawPennant(ctx, q.sx + 4, q.sy - 7, q.flag, t, q.flash, 1); boxes.push(fr); R.flagRects.push({ id: q.poi.id, x: fr.x, y: fr.y, w: fr.w, h: fr.h }); }
         ctx.fillStyle = 'rgba(0,0,0,0.22)'; ctx.beginPath(); ctx.arc(q.sx + 1, q.sy + 2, 7.5, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = st[0]; ctx.beginPath(); ctx.arc(q.sx, q.sy, 7.5, 0, Math.PI * 2); ctx.fill();
-        ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.6; ctx.stroke();
+        ctx.fillStyle = st[0]; ctx.beginPath(); ctx.arc(q.sx, q.sy, 9, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.8; ctx.stroke();
         glyph(ctx, q.poi.cat, q.sx, q.sy);
         ctx.textAlign = 'left'; ctx.textBaseline = 'middle'; ctx.lineJoin = 'round';
         ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(255,255,255,0.95)'; ctx.strokeText(label, q.sx + 10, q.sy);
